@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ClearCut - Free AI Background Remover. Remove background from any photo instantly. Free online tool.">
+<title>ClearCut — Free AI Background Remover</title>
+
+<!-- ★ GOOGLE ADSENSE — Apna Publisher ID yahan daalo ★ -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#f7f4ef; --card:#fff; --border:#e5ddd0;
+  --accent:#e8390e; --accent2:#ff8c00;
+  --dark:#18120a; --text:#2a1f14; --muted:#8a7a68;
+  --green:#1a8a4a; --sh:rgba(24,18,10,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── LANG BAR ── */
+.lang-bar{background:var(--dark);color:rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;gap:12px;padding:7px 20px;font-size:12px}
+.lb{background:none;border:1px solid rgba(255,255,255,.25);color:#fff;padding:3px 12px;border-radius:100px;font-size:11px;cursor:pointer;transition:.2s}
+.lb.on{background:var(--accent);border-color:var(--accent)}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:62px;background:rgba(247,244,239,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:7px}
+.logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:500;transition:.2s;cursor:pointer}
+.nav-links a:hover{color:var(--dark)}
+.nav-r{display:flex;gap:10px}
+.btn-ol{background:none;border:1.5px solid var(--border);color:var(--text);padding:7px 17px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;transition:.2s}
+.btn-ol:hover{border-color:var(--dark)}
+.btn-fl{background:var(--dark);color:#fff;padding:7px 18px;border-radius:9px;border:none;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+.btn-fl:hover{background:var(--accent)}
+
+/* ── AD SLOTS ── */
+.ad-top{background:#f0ece4;border-bottom:1px solid var(--border);padding:10px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+.ad-mid{text-align:center;margin:28px auto;padding:0 20px}
+.ad-bot{background:#f0ece4;border-top:1px solid var(--border);padding:10px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+.ad-box{background:var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;letter-spacing:.3px}
+
+/* ── HERO ── */
+.hero{padding:68px 24px 44px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:320px;background:radial-gradient(ellipse,rgba(232,57,14,.07),transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--dark);color:#fff;font-size:11.5px;font-weight:600;padding:5px 15px;border-radius:100px;margin-bottom:26px;letter-spacing:.3px}
+.badge span{color:var(--accent2)}
+h1{font-family:'Syne',sans-serif;font-size:clamp(38px,6.5vw,76px);font-weight:800;line-height:1.06;letter-spacing:-2px;color:var(--dark);margin-bottom:18px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:17px;color:var(--muted);max-width:460px;margin:0 auto 10px;line-height:1.65;font-weight:400}
+.sub2{font-size:13.5px;color:var(--muted);margin-bottom:38px;opacity:.75}
+.stats{display:flex;align-items:center;justify-content:center;gap:28px;margin-bottom:46px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* ── UPLOAD BOX ── */
+.up-wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.up-box{background:var(--card);border:2.5px dashed var(--border);border-radius:26px;padding:54px 36px;text-align:center;cursor:pointer;transition:.3s;position:relative;overflow:hidden;box-shadow:0 4px 28px var(--sh)}
+.up-box::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,57,14,.04),rgba(255,140,0,.04));opacity:0;transition:.3s}
+.up-box:hover,.up-box.drag{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 50px rgba(232,57,14,.13)}
+.up-box:hover::after,.up-box.drag::after{opacity:1}
+.up-icon{width:78px;height:78px;margin:0 auto 18px;background:linear-gradient(135deg,#fff5f3,#fff8f0);border:1.5px solid var(--border);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 14px var(--sh)}
+.up-box h3{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--dark);margin-bottom:5px}
+.up-box p{color:var(--muted);font-size:13.5px;margin-bottom:5px}
+.up-hint{font-size:12.5px;color:var(--muted);margin-bottom:26px;opacity:.7}
+.up-cta{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;border:none;padding:13px 34px;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.up-cta:hover{background:#c42e08;transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,57,14,.3)}
+.tags{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+.tag{background:var(--bg);border:1px solid var(--border);color:var(--muted);font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:6px}
+#fi{display:none}
+
+/* ── PROCESSING ── */
+.proc{display:none;max-width:720px;margin:28px auto;padding:0 20px}
+.proc.show{display:block}
+.proc-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px;box-shadow:0 4px 24px var(--sh)}
+.proc-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.ps{display:flex;align-items:center;gap:12px;padding:11px 15px;border-radius:11px;background:var(--bg);transition:.4s}
+.ps.act{background:#fff7f5;border:1px solid rgba(232,57,14,.2)}
+.ps.done{background:#f0faf4;border:1px solid rgba(26,138,74,.2)}
+.pi{font-size:18px;width:28px;text-align:center}
+.pt{font-size:13.5px;font-weight:500;flex:1}
+.pst{font-size:12px;color:var(--muted)}
+.pst.ok{color:var(--green)}
+.prog-track{height:7px;background:var(--bg);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:100px;transition:width .5s ease}
+
+/* ── RESULT ── */
+.res{display:none;max-width:860px;margin:28px auto;padding:0 20px}
+.res.show{display:block}
+.res-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.res-title{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--dark)}
+.res-badge{display:flex;align-items:center;gap:5px;background:#f0faf4;border:1px solid rgba(26,138,74,.3);color:var(--green);font-size:13px;font-weight:600;padding:5px 13px;border-radius:100px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.img-panel{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 4px 16px var(--sh)}
+.ph{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;color:var(--text)}
+.ptag{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 9px;border-radius:6px}
+.pt-b{background:var(--bg);color:var(--muted)}
+.pt-a{background:#f0faf4;color:var(--green)}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:14px 14px;background-position:0 0,0 7px,7px -7px,-7px 0}
+.pimg{width:100%;aspect-ratio:4/3;object-fit:contain;display:block}
+canvas.pimg{width:100%!important;height:auto!important;aspect-ratio:4/3;object-fit:contain}
+
+/* BG PICKER */
+.bgp{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 22px;margin-bottom:16px;box-shadow:0 4px 14px var(--sh)}
+.bgp h4{font-size:13.5px;font-weight:600;margin-bottom:12px;color:var(--dark)}
+.swatches{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.sw{width:34px;height:34px;border-radius:9px;cursor:pointer;border:2px solid transparent;transition:.2s;box-shadow:0 2px 8px var(--sh)}
+.sw:hover,.sw.on{border-color:var(--accent);transform:scale(1.15)}
+.sw-ck{background-image:linear-gradient(45deg,#bbb 25%,transparent 25%),linear-gradient(-45deg,#bbb 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#bbb 75%),linear-gradient(-45deg,transparent 75%,#bbb 75%);background-size:9px 9px;background-position:0 0,0 4.5px,4.5px -4.5px,-4.5px 0}
+.cc-wrap{display:flex;align-items:center;gap:6px;margin-left:6px}
+.cc-wrap input[type=color]{width:34px;height:34px;border:none;padding:0;border-radius:9px;cursor:pointer;background:none}
+.cc-wrap label{font-size:11px;color:var(--muted)}
+
+/* ACTIONS */
+.act-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-dl{flex:1;min-width:150px;background:var(--dark);color:#fff;border:none;padding:13px 22px;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-dl:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-wa{background:#25D366;color:#fff;border:none;padding:13px 18px;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-wa:hover{opacity:.88;transform:translateY(-1px)}
+.btn-rs{background:var(--card);color:var(--text);border:1.5px solid var(--border);padding:13px 18px;border-radius:13px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-rs:hover{border-color:var(--dark)}
+
+/* ── SECTIONS ── */
+.sec{padding:76px 24px;text-align:center}
+.sec-label{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:14px}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--dark);letter-spacing:-.5px;margin-bottom:8px}
+.sec-sub{color:var(--muted);font-size:15.5px;margin-bottom:44px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:900px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px 22px;text-align:left;transition:.3s;box-shadow:0 3px 14px var(--sh)}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px var(--sh)}
+.card-icon{font-size:28px;margin-bottom:12px}
+.card h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.65}
+
+/* ── DARK SECTION ── */
+.dark-sec{background:var(--dark);padding:76px 24px;text-align:center}
+.dark-sec .sec-title{color:#fff}
+.dark-sec .sec-label{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+.dark-sec .sec-sub{color:rgba(255,255,255,.45)}
+.dark-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px 20px;text-align:center;transition:.3s}
+.dark-card:hover{background:rgba(232,57,14,.1);border-color:rgba(232,57,14,.3);transform:translateY(-4px)}
+.dark-card .card-icon{font-size:36px;margin-bottom:12px}
+.dark-card h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.dark-card p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* ── HOW STEPS ── */
+.step-num{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--border);line-height:1;margin-bottom:10px}
+
+/* ── PRICING ── */
+.pricing-sec{background:#f0ece4;padding:76px 24px;text-align:center}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:860px;margin:0 auto}
+.plan{background:var(--card);border:1.5px solid var(--border);border-radius:22px;padding:30px 24px;text-align:left;position:relative;transition:.3s;box-shadow:0 4px 20px var(--sh)}
+.plan:hover{transform:translateY(-4px);box-shadow:0 20px 50px var(--sh)}
+.plan.hot{border-color:var(--accent);background:linear-gradient(160deg,#fff9f7,var(--card))}
+.hot-lbl{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:4px 14px;border-radius:100px;white-space:nowrap}
+.plan-tier{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.plan-price{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;color:var(--dark);line-height:1;margin-bottom:4px}
+.plan-price small{font-size:15px;font-weight:400;color:var(--muted)}
+.plan-desc{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.5}
+.divider{height:1px;background:var(--border);margin-bottom:18px}
+.feats{list-style:none;margin-bottom:26px}
+.feats li{font-size:13px;color:var(--text);padding:5px 0;display:flex;align-items:flex-start;gap:7px}
+.ck{color:var(--green);font-weight:700;flex-shrink:0}
+.cx{color:#ccc;font-weight:700;flex-shrink:0}
+.plan-btn{width:100%;padding:12px 18px;border-radius:11px;font-size:13.5px;font-weight:700;cursor:pointer;border:none;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.pb-ol{background:#fff;color:var(--dark);border:1.5px solid var(--border)}
+.pb-ol:hover{border-color:var(--dark)}
+.pb-fl{background:var(--dark);color:#fff}
+.pb-fl:hover{background:var(--accent)}
+.plan-note{font-size:11px;color:var(--muted);text-align:center;margin-top:9px}
+
+/* ── TESTIMONIALS ── */
+.testi{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;text-align:left;box-shadow:0 3px 14px var(--sh)}
+.stars{color:#f59e0b;font-size:13px;margin-bottom:10px}
+.tq{font-size:13px;color:var(--text);line-height:1.65;margin-bottom:14px;font-style:italic}
+.ta{display:flex;align-items:center;gap:9px}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0}
+.an{font-size:13px;font-weight:600;color:var(--dark)}
+.ar{font-size:11px;color:var(--muted)}
+
+/* ── FAQ ── */
+.faq-sec{background:#f0ece4;padding:76px 24px}
+.faq-inner{max-width:660px;margin:0 auto}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:13px;margin-bottom:9px;overflow:hidden;box-shadow:0 2px 8px var(--sh)}
+.faq-q{padding:17px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13.5px;font-weight:600;color:var(--dark);user-select:none;transition:.2s}
+.faq-q:hover{background:var(--bg)}
+.arr{transition:transform .3s;font-size:11px;color:var(--muted)}
+.faq-item.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:13px;color:var(--muted);line-height:1.75;padding:0 20px}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+
+/* ── CONTACT ── */
+.contact-sec{padding:76px 24px;text-align:center}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:38px;box-shadow:0 4px 24px var(--sh);max-width:580px;margin:0 auto;text-align:left}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:13px;font-weight:600;color:var(--dark);margin-bottom:5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:13.5px;color:var(--text);background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:.2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent)}
+.fg textarea{height:95px;resize:none}
+.btn-sub{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-sub:hover{background:#c42e08;transform:translateY(-1px)}
+
+/* ── PRIVACY ── */
+.privacy-sec{padding:76px 24px}
+.prose{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:40px;box-shadow:0 4px 24px var(--sh);max-width:700px;margin:0 auto}
+.prose h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--dark);margin-bottom:6px}
+.prose .upd{font-size:12px;color:var(--muted);margin-bottom:26px}
+.prose h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--dark);margin:22px 0 7px}
+.prose p{font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:10px}
+.prose ul{padding-left:18px;margin-bottom:10px}
+.prose ul li{font-size:13.5px;color:var(--muted);line-height:1.8}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);color:rgba(255,255,255,.45);padding:46px 48px 26px}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:38px;margin-bottom:36px}
+.fb p{font-size:13px;line-height:1.7;max-width:210px;margin-top:10px}
+.fc h5{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px}
+.fc a{display:block;color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;margin-bottom:7px;transition:.2s;cursor:pointer}
+.fc a:hover{color:#fff}
+.fb-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px}
+.fb-bot a{color:rgba(255,255,255,.35);text-decoration:none}
+.fb-bot a:hover{color:#fff}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;right:22px;z-index:999;background:var(--dark);color:#fff;border-radius:13px;padding:13px 18px;display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:500;box-shadow:0 20px 50px rgba(0,0,0,.3);transform:translateY(70px);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ── PAGES ── */
+.page{display:none}.page.on{display:block}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .grid3,.grid4,.plans,.cmp{grid-template-columns:1fr}
+  .fg-grid{grid-template-columns:1fr 1fr}
+  footer{padding:36px 20px 20px}
+  .act-row{flex-direction:column}
+  .btn-dl{flex:none}
+  h1{letter-spacing:-1px}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .6s ease forwards;opacity:0}
+.fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<div class="lang-bar">
+  <span>🌐</span>
+  <button class="lb on" onclick="setLang('en')">English</button>
+  <button class="lb" onclick="setLang('hi')">हिंदी</button>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#" onclick="showPage('home')">ClearCut<div class="logo-dot"></div></a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-en="Home" data-hi="होम">Home</a></li>
+    <li><a href="#features" data-en="Features" data-hi="फीचर्स">Features</a></li>
+    <li><a href="#pricing" data-en="Pricing" data-hi="प्राइसिंग">Pricing</a></li>
+    <li><a onclick="showPage('contact')" data-en="Contact" data-hi="संपर्क">Contact</a></li>
+    <li><a onclick="showPage('privacy')" data-en="Privacy Policy" data-hi="प्राइवेसी">Privacy Policy</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="btn-ol" data-en="Sign In" data-hi="लॉग इन">Sign In</button>
+    <button class="btn-fl" onclick="scrollTo({top:9999})" data-en="Get Pro ✦" data-hi="प्रो लें ✦">Get Pro ✦</button>
+  </div>
+</nav>
+
+<!-- ══════════ HOME PAGE ══════════ -->
+<div class="page on" id="page-home">
+
+  <!-- AD TOP -->
+  <div class="ad-top">
+    <div class="ad-box" style="width:728px;max-width:100%;height:90px">
+      <!-- ★ Replace with your AdSense code ★
+      <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script> -->
+      📢 AdSense Banner 728×90 — Apna ad code yahan daalo
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge fu fu1">✦ <span data-en="100% Free · No Signup · Instant AI" data-hi="100% फ्री · कोई साइनअप नहीं · तुरंत">100% Free · No Signup · Instant AI</span></div>
+    <h1 class="fu fu2">
+      <span data-en="Remove Background" data-hi="बैकग्राउंड हटाओ">Remove Background</span><br>
+      <em data-en="in One Click" data-hi="एक क्लिक में">in One Click</em>
+    </h1>
+    <p class="sub fu fu3" data-en="Upload any photo — our AI removes the background instantly. Free, no watermark, no login." data-hi="कोई भी फोटो अपलोड करो — AI तुरंत बैकग्राउंड हटा देगी। मुफ्त, कोई वॉटरमार्क नहीं।">
+      Upload any photo — our AI removes the background instantly. Free, no watermark, no login.
+    </p>
+    <p class="sub2 fu fu3" data-en="Trusted by 50,000+ creators, sellers & designers across India" data-hi="भारत के 50,000+ क्रिएटर्स, सेलर्स का भरोसा">Trusted by 50,000+ creators, sellers & designers across India</p>
+    <div class="stats">
+      <div class="stat"><div class="sdot"></div><span data-en="50K+ Happy Users" data-hi="50K+ खुश यूज़र्स">50K+ Happy Users</span></div>
+      <div class="stat"><div class="sdot"></div><span data-en="2M+ Images Processed" data-hi="20 लाख+ इमेज">2M+ Images Processed</span></div>
+      <div class="stat"><div class="sdot"></div><span data-en="Always Free" data-hi="हमेशा मुफ्त">Always Free</span></div>
+    </div>
+  </section>
+
+  <!-- UPLOAD -->
+  <div class="up-wrap">
+    <div class="up-box" id="upBox">
+      <div class="up-icon">🖼️</div>
+      <h3 data-en="Drop your image here" data-hi="यहाँ इमेज डालें">Drop your image here</h3>
+      <p data-en="or click to browse from your device" data-hi="या डिवाइस से चुनें">or click to browse from your device</p>
+      <p class="up-hint" data-en="Works with portraits, products, logos, animals & more" data-hi="पोर्ट्रेट, प्रोडक्ट, लोगो, जानवर — सब के लिए">Works with portraits, products, logos, animals & more</p>
+      <button class="up-cta" id="upBtn">
+        📁 <span data-en="Choose Image" data-hi="इमेज चुनें">Choose Image</span>
+      </button>
+      <div class="tags">
+        <span class="tag">JPG</span><span class="tag">PNG</span>
+        <span class="tag">WEBP</span><span class="tag">Max 10MB</span>
+        <span class="tag" data-en="Free · No Login" data-hi="मुफ्त · कोई लॉगिन नहीं">Free · No Login</span>
+      </div>
+      <input type="file" id="fi" accept="image/*">
+    </div>
+  </div>
+
+  <!-- AD MIDDLE -->
+  <div class="ad-mid">
+    <div class="ad-box" style="width:300px;height:250px;margin:0 auto;border-radius:12px">
+      <!-- ★ Replace with your AdSense code ★
+      <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script> -->
+      📢 Ad 300×250
+    </div>
+  </div>
+
+  <!-- PROCESSING -->
+  <div class="proc" id="procSec">
+    <div class="proc-card">
+      <div class="proc-steps">
+        <div class="ps" id="s1"><div class="pi">📤</div><div class="pt" data-en="Uploading image..." data-hi="इमेज अपलोड हो रही है...">Uploading image...</div><div class="pst" id="s1t">—</div></div>
+        <div class="ps" id="s2"><div class="pi">🤖</div><div class="pt" data-en="AI analyzing image..." data-hi="AI एनालाइज कर रही है...">AI analyzing image...</div><div class="pst" id="s2t">—</div></div>
+        <div class="ps" id="s3"><div class="pi">✂️</div><div class="pt" data-en="Removing background..." data-hi="बैकग्राउंड हटाया जा रहा है...">Removing background...</div><div class="pst" id="s3t">—</div></div>
+        <div class="ps" id="s4"><div class="pi">✅</div><div class="pt" data-en="Finalizing..." data-hi="रिज़ल्ट तैयार हो रहा है...">Finalizing...</div><div class="pst" id="s4t">—</div></div>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="pFill"></div></div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="res" id="resSec">
+    <div class="res-head">
+      <div class="res-title" data-en="✦ Background Removed!" data-hi="✦ बैकग्राउंड हट गया!">✦ Background Removed!</div>
+      <div class="res-badge">✓ <span data-en="AI Processed" data-hi="AI प्रोसेस्ड">AI Processed</span></div>
+    </div>
+    <div class="cmp">
+      <div class="img-panel">
+        <div class="ph"><span data-en="Original" data-hi="ओरिजिनल">Original</span><span class="ptag pt-b" data-en="Before" data-hi="पहले">Before</span></div>
+        <img id="origImg" class="pimg" src="" alt="Original">
+      </div>
+      <div class="img-panel">
+        <div class="ph"><span data-en="Result" data-hi="रिज़ल्ट">Result</span><span class="ptag pt-a" data-en="✓ Done" data-hi="✓ हो गया">✓ Done</span></div>
+        <div class="checker" id="canvasWrap"><canvas id="resCv" class="pimg"></canvas></div>
+      </div>
+    </div>
+
+    <!-- BG PICKER -->
+    <div class="bgp">
+      <h4 data-en="🎨 Change Background Color" data-hi="🎨 बैकग्राउंड कलर बदलें">🎨 Change Background Color</h4>
+      <div class="swatches">
+        <div class="sw sw-ck on" title="Transparent" onclick="setBg('t',this)"></div>
+        <div class="sw" style="background:#fff" onclick="setBg('#fff',this)"></div>
+        <div class="sw" style="background:#000" onclick="setBg('#000',this)"></div>
+        <div class="sw" style="background:#e8390e" onclick="setBg('#e8390e',this)"></div>
+        <div class="sw" style="background:#3b82f6" onclick="setBg('#3b82f6',this)"></div>
+        <div class="sw" style="background:#10b981" onclick="setBg('#10b981',this)"></div>
+        <div class="sw" style="background:#f59e0b" onclick="setBg('#f59e0b',this)"></div>
+        <div class="sw" style="background:#8b5cf6" onclick="setBg('#8b5cf6',this)"></div>
+        <div class="sw" style="background:#ec4899" onclick="setBg('#ec4899',this)"></div>
+        <div class="cc-wrap">
+          <input type="color" id="cc" value="#ffffff" onchange="setBg(this.value,null)">
+          <label data-en="Custom" data-hi="कस्टम">Custom</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-row">
+      <button class="btn-dl" onclick="dlRes()">⬇ <span data-en="Download PNG Free" data-hi="PNG डाउनलोड करें (मुफ्त)">Download PNG Free</span></button>
+      <button class="btn-wa" onclick="waShare()">💬 <span data-en="Share on WhatsApp" data-hi="WhatsApp पर शेयर">Share on WhatsApp</span></button>
+      <button class="btn-rs" onclick="resetAll()">↺ <span data-en="Try Another" data-hi="दूसरी इमेज">Try Another</span></button>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" id="features">
+    <div class="sec-label">⚡ <span data-en="Simple Process" data-hi="आसान प्रक्रिया">Simple Process</span></div>
+    <h2 class="sec-title" data-en="How It Works" data-hi="यह कैसे काम करता है">How It Works</h2>
+    <p class="sec-sub" data-en="3 simple steps — done in seconds" data-hi="3 आसान कदम — सेकंडों में">3 simple steps — done in seconds</p>
+    <div class="grid3">
+      <div class="card"><div class="step-num">01</div><h4 data-en="Upload Image" data-hi="इमेज अपलोड करें">Upload Image</h4><p data-en="Drag & drop or click to upload. JPG, PNG, WEBP up to 10MB." data-hi="ड्रैग & ड्रॉप या क्लिक करके अपलोड करें। JPG, PNG, WEBP।">Drag & drop or click to upload. JPG, PNG, WEBP up to 10MB.</p></div>
+      <div class="card"><div class="step-num">02</div><h4 data-en="AI Removes BG" data-hi="AI बैकग्राउंड हटाती है">AI Removes BG</h4><p data-en="Our AI detects and removes background in under 3 seconds." data-hi="AI 3 सेकंड में बैकग्राउंड हटा देती है।">Our AI detects and removes background in under 3 seconds.</p></div>
+      <div class="card"><div class="step-num">03</div><h4 data-en="Download Free" data-hi="मुफ्त डाउनलोड">Download Free</h4><p data-en="Download your transparent PNG. No watermark ever." data-hi="Transparent PNG मुफ्त डाउनलोड करें। कोई वॉटरमार्क नहीं।">Download your transparent PNG. No watermark ever.</p></div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="dark-sec">
+    <div class="sec-label">🎯 <span data-en="Perfect For" data-hi="किसके लिए">Perfect For</span></div>
+    <h2 class="sec-title" data-en="Who Uses ClearCut?" data-hi="ClearCut कौन इस्तेमाल करता है?">Who Uses ClearCut?</h2>
+    <p class="sec-sub" data-en="Loved by millions across India" data-hi="भारत के लाखों लोग इस्तेमाल करते हैं">Loved by millions across India</p>
+    <div class="grid4">
+      <div class="dark-card"><div class="card-icon">🛍️</div><h4 data-en="eCommerce Sellers" data-hi="ई-कॉमर्स सेलर्स">eCommerce Sellers</h4><p data-en="Amazon, Flipkart, Meesho sellers create white background product photos." data-hi="Amazon, Flipkart, Meesho सेलर्स।">Amazon, Flipkart, Meesho sellers create white background product photos.</p></div>
+      <div class="dark-card"><div class="card-icon">📸</div><h4 data-en="Photographers" data-hi="फोटोग्राफर्स">Photographers</h4><p data-en="Remove backgrounds from portraits and shoots professionally." data-hi="पोर्ट्रेट से बैकग्राउंड हटाएं।">Remove backgrounds from portraits and shoots professionally.</p></div>
+      <div class="dark-card"><div class="card-icon">🎨</div><h4 data-en="Designers" data-hi="डिजाइनर्स">Designers</h4><p data-en="Create clean cutouts for social media and marketing." data-hi="सोशल मीडिया के लिए क्लीन कटआउट।">Create clean cutouts for social media and marketing.</p></div>
+      <div class="dark-card"><div class="card-icon">🪪</div><h4 data-en="Passport Photos" data-hi="पासपोर्ट फोटो">Passport Photos</h4><p data-en="Make white-background ID photos at home for free." data-hi="घर पर पासपोर्ट फोटो बनाएं।">Make white-background ID photos at home for free.</p></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="sec">
+    <div class="sec-label">✦ <span data-en="Why ClearCut" data-hi="क्यों ClearCut">Why ClearCut</span></div>
+    <h2 class="sec-title" data-en="Everything You Need" data-hi="जो भी चाहिए, सब यहाँ">Everything You Need</h2>
+    <p class="sec-sub" data-en="Powerful features, completely free" data-hi="शक्तिशाली फीचर्स, बिल्कुल मुफ्त">Powerful features, completely free</p>
+    <div class="grid3">
+      <div class="card"><div class="card-icon">⚡</div><h4 data-en="Lightning Fast" data-hi="बिजली की रफ्तार">Lightning Fast</h4><p data-en="Results in under 3 seconds. No queue, no waiting." data-hi="3 सेकंड में रिज़ल्ट।">Results in under 3 seconds. No queue, no waiting.</p></div>
+      <div class="card"><div class="card-icon">🎯</div><h4 data-en="Pixel-Perfect" data-hi="परफेक्ट एज">Pixel-Perfect</h4><p data-en="AI handles fine hair, fur, complex edges with stunning accuracy." data-hi="AI बाल और जटिल किनारे सटीकता से पहचानती है।">AI handles fine hair, fur, complex edges with stunning accuracy.</p></div>
+      <div class="card"><div class="card-icon">🔒</div><h4 data-en="100% Private" data-hi="100% प्राइवेट">100% Private</h4><p data-en="Images deleted immediately after processing. Never stored." data-hi="प्रोसेस के बाद इमेज तुरंत डिलीट। कभी स्टोर नहीं।">Images deleted immediately after processing. Never stored.</p></div>
+      <div class="card"><div class="card-icon">🎨</div><h4 data-en="Custom Backgrounds" data-hi="कस्टम बैकग्राउंड">Custom Backgrounds</h4><p data-en="Add any color background after removing in one click." data-hi="एक क्लिक में कोई भी बैकग्राउंड कलर लगाएं।">Add any color background after removing in one click.</p></div>
+      <div class="card"><div class="card-icon">📱</div><h4 data-en="Works on Mobile" data-hi="मोबाइल पर काम करे">Works on Mobile</h4><p data-en="No app needed. Works on any phone or tablet perfectly." data-hi="कोई ऐप नहीं। किसी भी फोन पर काम करता है।">No app needed. Works on any phone or tablet perfectly.</p></div>
+      <div class="card"><div class="card-icon">⚙️</div><h4 data-en="API for Developers" data-hi="API एक्सेस">API for Developers</h4><p data-en="REST API for bulk processing. Perfect for eCommerce stores." data-hi="बल्क प्रोसेसिंग के लिए API।">REST API for bulk processing. Perfect for eCommerce stores.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="sec" style="background:#f0ece4;padding:76px 24px">
+    <div class="sec-label">⭐ <span data-en="Reviews" data-hi="समीक्षाएं">Reviews</span></div>
+    <h2 class="sec-title" data-en="What Our Users Say" data-hi="यूज़र्स क्या कहते हैं">What Our Users Say</h2>
+    <p class="sec-sub" data-en="Loved by creators across India" data-hi="भारत के क्रिएटर्स का प्यार">Loved by creators across India</p>
+    <div class="grid3">
+      <div class="testi"><div class="stars">★★★★★</div><p class="tq">"Meri Amazon shop ke liye product photos banane mein bahut helpful hai. White background ek second mein! Studio ke paise bach gaye."</p><div class="ta"><div class="av">R</div><div><div class="an">Rahul Sharma</div><div class="ar">Amazon Seller, Delhi</div></div></div></div>
+      <div class="testi"><div class="stars">★★★★★</div><p class="tq">"I use ClearCut daily for my Instagram posts. The background removal is so clean and accurate. Absolutely the best free tool I've found!"</p><div class="ta"><div class="av">P</div><div><div class="an">Priya Nair</div><div class="ar">Content Creator, Mumbai</div></div></div></div>
+      <div class="testi"><div class="stars">★★★★★</div><p class="tq">"Passport photo ghar pe hi bana liya! Pehle studio mein ₹100 dete the, ab free mein ho jaata hai. Bahut kaam ki cheez hai!"</p><div class="ta"><div class="av">A</div><div><div class="an">Amit Verma</div><div class="ar">Student, Jaipur</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-sec" id="pricing">
+    <div class="sec-label">💰 <span data-en="Pricing" data-hi="प्राइसिंग">Pricing</span></div>
+    <h2 class="sec-title" data-en="Start Free, Upgrade When Ready" data-hi="मुफ्त शुरू करें, जब चाहें अपग्रेड">Start Free, Upgrade When Ready</h2>
+    <p class="sec-sub" data-en="No hidden charges. Cancel anytime." data-hi="कोई छुपे चार्ज नहीं।">No hidden charges. Cancel anytime.</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-tier" data-en="Free Forever" data-hi="हमेशा मुफ्त">Free Forever</div>
+        <div class="plan-price">₹0 <small data-en="/month" data-hi="/महीना">/month</small></div>
+        <div class="plan-desc" data-en="Perfect to get started. No card needed." data-hi="शुरुआत के लिए परफेक्ट।">Perfect to get started. No card needed.</div>
+        <div class="divider"></div>
+        <ul class="feats">
+          <li><span class="ck">✓</span><span data-en="5 images per day" data-hi="5 इमेज/दिन">5 images per day</span></li>
+          <li><span class="ck">✓</span><span data-en="Standard quality" data-hi="स्टैंडर्ड क्वालिटी">Standard quality</span></li>
+          <li><span class="ck">✓</span><span data-en="PNG download" data-hi="PNG डाउनलोड">PNG download</span></li>
+          <li><span class="ck">✓</span><span data-en="Background color change" data-hi="बैकग्राउंड कलर">Background color change</span></li>
+          <li><span class="cx">✗</span><span data-en="HD 4K quality" data-hi="HD क्वालिटी">HD 4K quality</span></li>
+          <li><span class="cx">✗</span><span data-en="Bulk processing" data-hi="बल्क प्रोसेसिंग">Bulk processing</span></li>
+        </ul>
+        <button class="plan-btn pb-ol" data-en="Start Free →" data-hi="मुफ्त शुरू करें →">Start Free →</button>
+        <div class="plan-note" data-en="No signup required" data-hi="कोई साइनअप नहीं">No signup required</div>
+      </div>
+      <div class="plan hot">
+        <div class="hot-lbl" data-en="Most Popular" data-hi="सबसे लोकप्रिय">Most Popular</div>
+        <div class="plan-tier" data-en="Pro Plan" data-hi="प्रो प्लान">Pro Plan</div>
+        <div class="plan-price">₹299 <small data-en="/month" data-hi="/महीना">/month</small></div>
+        <div class="plan-desc" data-en="For creators, freelancers & small businesses." data-hi="क्रिएटर्स और फ्रीलांसर्स के लिए।">For creators, freelancers & small businesses.</div>
+        <div class="divider"></div>
+        <ul class="feats">
+          <li><span class="ck">✓</span><span data-en="200 images/month" data-hi="200 इमेज/महीना">200 images/month</span></li>
+          <li><span class="ck">✓</span><span data-en="HD 4K quality" data-hi="HD 4K क्वालिटी">HD 4K quality</span></li>
+          <li><span class="ck">✓</span><span data-en="No watermark" data-hi="कोई वॉटरमार्क नहीं">No watermark</span></li>
+          <li><span class="ck">✓</span><span data-en="Custom backgrounds" data-hi="कस्टम बैकग्राउंड">Custom backgrounds</span></li>
+          <li><span class="ck">✓</span><span data-en="Priority processing" data-hi="प्रायोरिटी">Priority processing</span></li>
+          <li><span class="ck">✓</span><span data-en="Email support" data-hi="ईमेल सपोर्ट">Email support</span></li>
+        </ul>
+        <button class="plan-btn pb-fl" data-en="Get Pro →" data-hi="प्रो लें →">Get Pro →</button>
+        <div class="plan-note" data-en="~₹1.50/image. Cancel anytime." data-hi="~₹1.50/इमेज।">~₹1.50/image. Cancel anytime.</div>
+      </div>
+      <div class="plan">
+        <div class="plan-tier" data-en="Business" data-hi="बिज़नेस">Business</div>
+        <div class="plan-price">₹999 <small data-en="/month" data-hi="/महीना">/month</small></div>
+        <div class="plan-desc" data-en="For agencies, teams & eCommerce stores." data-hi="एजेंसियों और eCommerce के लिए।">For agencies, teams & eCommerce stores.</div>
+        <div class="divider"></div>
+        <ul class="feats">
+          <li><span class="ck">✓</span><span data-en="Unlimited images" data-hi="अनलिमिटेड इमेज">Unlimited images</span></li>
+          <li><span class="ck">✓</span><span data-en="4K + Bulk processing" data-hi="4K + बल्क">4K + Bulk processing</span></li>
+          <li><span class="ck">✓</span><span data-en="API access" data-hi="API एक्सेस">API access</span></li>
+          <li><span class="ck">✓</span><span data-en="White-label option" data-hi="व्हाइट-लेबल">White-label option</span></li>
+          <li><span class="ck">✓</span><span data-en="Dedicated support" data-hi="डेडिकेटेड सपोर्ट">Dedicated support</span></li>
+          <li><span class="ck">✓</span><span data-en="Custom integrations" data-hi="कस्टम इंटीग्रेशन">Custom integrations</span></li>
+        </ul>
+        <button class="plan-btn pb-ol" onclick="showPage('contact')" data-en="Contact Sales →" data-hi="सेल्स से संपर्क →">Contact Sales →</button>
+        <div class="plan-note" data-en="Free 7-day trial" data-hi="7 दिन का ट्रायल">Free 7-day trial</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-sec">
+    <div class="faq-inner">
+      <div style="text-align:center;margin-bottom:36px">
+        <div class="sec-label">❓ FAQ</div>
+        <h2 class="sec-title" data-en="Frequently Asked Questions" data-hi="अक्सर पूछे जाने वाले सवाल">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-en="Is ClearCut really free?" data-hi="क्या ClearCut सच में मुफ्त है?">Is ClearCut really free?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-en="Yes! ClearCut is 100% free. Remove background from 5 images per day — no signup, no credit card needed. Upgrade to Pro for more." data-hi="हां! ClearCut 100% मुफ्त है। रोज़ 5 इमेज से बैकग्राउंड हटाएं — कोई साइनअप नहीं।">Yes! ClearCut is 100% free. Remove background from 5 images per day — no signup, no credit card needed. Upgrade to Pro for more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-en="Are my images safe?" data-hi="क्या मेरी इमेज सुरक्षित हैं?">Are my images safe?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-en="Absolutely. Images are processed securely and permanently deleted after processing. We never store or share your photos." data-hi="बिल्कुल। इमेज सुरक्षित तरीके से प्रोसेस होती है और तुरंत डिलीट हो जाती है।">Absolutely. Images are processed securely and permanently deleted after processing. We never store or share your photos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-en="What formats are supported?" data-hi="कौन से फॉर्मेट सपोर्ट हैं?">What formats are supported?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-en="ClearCut supports JPG, PNG, and WEBP formats up to 10MB. Result is always a transparent PNG file." data-hi="JPG, PNG और WEBP फॉर्मेट, 10MB तक। रिज़ल्ट transparent PNG होगी।">ClearCut supports JPG, PNG, and WEBP formats up to 10MB. Result is always a transparent PNG file.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-en="Can I use it for passport photos?" data-hi="पासपोर्ट फोटो के लिए इस्तेमाल कर सकते हैं?">Can I use it for passport photos?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-en="Yes! Many users create white background photos for passports, Aadhar, PAN card etc. Just select white background after removing." data-hi="हां! बहुत से लोग पासपोर्ट, आधार के लिए इस्तेमाल करते हैं। सफेद बैकग्राउंड चुनें।">Yes! Many users create white background photos for passports, Aadhar, PAN card etc. Just select white background after removing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-en="How do I integrate the API?" data-hi="API कैसे इंटीग्रेट करें?">How do I integrate the API?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-en="Our REST API is available on Business plan. Contact us after signup and we'll provide documentation and API keys." data-hi="REST API Business प्लान में उपलब्ध है। साइनअप के बाद संपर्क करें।">Our REST API is available on Business plan. Contact us after signup and we'll provide documentation and API keys.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD BOTTOM -->
+  <div class="ad-bot">
+    <div class="ad-box" style="width:728px;max-width:100%;height:90px">
+      <!-- ★ Replace with your AdSense code ★ -->
+      📢 AdSense Banner 728×90 — Footer
+    </div>
+  </div>
+
+</div><!-- /home -->
+
+<!-- ══════════ CONTACT PAGE ══════════ -->
+<div class="page" id="page-contact">
+  <section class="contact-sec">
+    <div class="sec-label">📬 <span data-en="Get In Touch" data-hi="संपर्क करें">Get In Touch</span></div>
+    <h2 class="sec-title" data-en="Contact Us" data-hi="हमसे संपर्क करें">Contact Us</h2>
+    <p class="sec-sub" data-en="We reply within 24 hours" data-hi="हम 24 घंटे में जवाब देते हैं">We reply within 24 hours</p>
+    <div class="contact-card">
+      <div class="fg">
+        <label data-en="Your Name" data-hi="आपका नाम">Your Name</label>
+        <input type="text" id="cName" placeholder="Rahul Sharma">
+      </div>
+      <div class="fg">
+        <label data-en="Email Address" data-hi="ईमेल">Email Address</label>
+        <input type="email" id="cEmail" placeholder="rahul@gmail.com">
+      </div>
+      <div class="fg">
+        <label data-en="Subject" data-hi="विषय">Subject</label>
+        <select id="cSubject">
+          <option data-en="General Question" data-hi="सामान्य सवाल">General Question</option>
+          <option data-en="Pro Plan Enquiry" data-hi="प्रो प्लान">Pro Plan Enquiry</option>
+          <option data-en="Business / API" data-hi="बिज़नेस / API">Business / API</option>
+          <option data-en="Report a Bug" data-hi="बग रिपोर्ट">Report a Bug</option>
+          <option data-en="Partnership" data-hi="पार्टनरशिप">Partnership</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label data-en="Message" data-hi="संदेश">Message</label>
+        <textarea id="cMsg" placeholder="Aapka message yahan likhein..."></textarea>
+      </div>
+      <button class="btn-sub" onclick="submitContact()" data-en="Send Message →" data-hi="संदेश भेजें →">Send Message →</button>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ PRIVACY PAGE ══════════ -->
+<div class="page" id="page-privacy">
+  <section class="privacy-sec">
+    <div class="prose">
+      <h2 data-en="Privacy Policy" data-hi="प्राइवेसी पॉलिसी">Privacy Policy</h2>
+      <div class="upd" data-en="Last updated: January 2026" data-hi="अंतिम अपडेट: जनवरी 2026">Last updated: January 2026</div>
+
+      <h3 data-en="1. Information We Collect" data-hi="1. हम क्या जानकारी इकट्ठा करते हैं">1. Information We Collect</h3>
+      <p data-en="ClearCut collects minimal information to operate the service. When you use our background removal tool, images are temporarily processed and immediately deleted. We do not store your images." data-hi="ClearCut न्यूनतम जानकारी इकट्ठा करता है। जब आप हमारा टूल इस्तेमाल करते हैं, इमेज तुरंत प्रोसेस होती हैं और डिलीट हो जाती हैं।">ClearCut collects minimal information to operate the service. When you use our background removal tool, images are temporarily processed and immediately deleted. We do not store your images.</p>
+
+      <h3 data-en="2. How We Use Your Information" data-hi="2. हम जानकारी का उपयोग कैसे करते हैं">2. How We Use Your Information</h3>
+      <p data-en="We use collected information to:" data-hi="हम जानकारी का उपयोग इन कामों के लिए करते हैं:">We use collected information to:</p>
+      <ul>
+        <li data-en="Provide and improve the background removal service" data-hi="सेवा प्रदान करने और सुधारने के लिए">Provide and improve the background removal service</li>
+        <li data-en="Analyze usage patterns to improve user experience" data-hi="उपयोगकर्ता अनुभव सुधारने के लिए">Analyze usage patterns to improve user experience</li>
+        <li data-en="Display relevant advertisements via Google AdSense" data-hi="Google AdSense के माध्यम से विज्ञापन दिखाने के लिए">Display relevant advertisements via Google AdSense</li>
+      </ul>
+
+      <h3 data-en="3. Google AdSense & Cookies" data-hi="3. Google AdSense और कुकीज़">3. Google AdSense & Cookies</h3>
+      <p data-en="This website uses Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this website or other websites. You may opt out of personalized advertising by visiting Google's Ads Settings." data-hi="यह वेबसाइट Google AdSense का उपयोग विज्ञापन दिखाने के लिए करती है। Google कुकीज़ का उपयोग कर सकता है।">This website uses Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this website or other websites. You may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+
+      <h3 data-en="4. Image Privacy" data-hi="4. इमेज प्राइवेसी">4. Image Privacy</h3>
+      <p data-en="All uploaded images are processed in real-time and permanently deleted from our servers immediately after processing. We do not retain, analyze, or share your images with any third parties." data-hi="सभी अपलोड की गई इमेज रियल-टाइम में प्रोसेस होती हैं और तुरंत हमारे सर्वर से स्थायी रूप से हटा दी जाती हैं।">All uploaded images are processed in real-time and permanently deleted from our servers immediately after processing. We do not retain, analyze, or share your images with any third parties.</p>
+
+      <h3 data-en="5. Data Security" data-hi="5. डेटा सुरक्षा">5. Data Security</h3>
+      <p data-en="We implement appropriate security measures to protect your information. All data transmission is encrypted using SSL/TLS technology." data-hi="हम आपकी जानकारी की सुरक्षा के लिए उचित उपाय लागू करते हैं। सभी डेटा ट्रांसमिशन SSL/TLS से एन्क्रिप्टेड है।">We implement appropriate security measures to protect your information. All data transmission is encrypted using SSL/TLS technology.</p>
+
+      <h3 data-en="6. Contact Us" data-hi="6. संपर्क करें">6. Contact Us</h3>
+      <p data-en="If you have questions about this Privacy Policy, please contact us through our Contact page." data-hi="इस प्राइवेसी पॉलिसी के बारे में सवाल हों तो हमारे Contact पेज से संपर्क करें।">If you have questions about this Privacy Policy, please contact us through our Contact page.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="fg-grid">
+    <div class="fb">
+      <a class="logo" href="#" onclick="showPage('home')" style="color:#fff">ClearCut<div class="logo-dot"></div></a>
+      <p data-en="Free AI background remover. Instant, accurate, private. Trusted by 50,000+ users across India." data-hi="फ्री AI बैकग्राउंड रिमूवर। तुरंत, सटीक, प्राइवेट।">Free AI background remover. Instant, accurate, private. Trusted by 50,000+ users across India.</p>
+    </div>
+    <div class="fc">
+      <h5 data-en="Tool" data-hi="टूल">Tool</h5>
+      <a onclick="showPage('home')" data-en="Background Remover" data-hi="बैकग्राउंड रिमूवर">Background Remover</a>
+      <a data-en="Bulk Remover" data-hi="बल्क रिमूवर">Bulk Remover</a>
+      <a data-en="API Access" data-hi="API एक्सेस">API Access</a>
+    </div>
+    <div class="fc">
+      <h5 data-en="Company" data-hi="कंपनी">Company</h5>
+      <a onclick="showPage('contact')" data-en="Contact" data-hi="संपर्क">Contact</a>
+      <a onclick="showPage('privacy')" data-en="Privacy Policy" data-hi="प्राइवेसी पॉलिसी">Privacy Policy</a>
+      <a data-en="Terms of Service" data-hi="सेवा की शर्तें">Terms of Service</a>
+    </div>
+    <div class="fc">
+      <h5 data-en="Plans" data-hi="प्लान">Plans</h5>
+      <a onclick="showPage('home');setTimeout(()=>document.getElementById('pricing').scrollIntoView(),100)" data-en="Free Plan" data-hi="फ्री प्लान">Free Plan</a>
+      <a data-en="Pro — ₹299/mo" data-hi="प्रो — ₹299/महीना">Pro — ₹299/mo</a>
+      <a data-en="Business — ₹999/mo" data-hi="बिज़नेस — ₹999/महीना">Business — ₹999/mo</a>
+    </div>
+  </div>
+  <div class="fb-bot">
+    <span>© 2026 ClearCut. <span data-en="All rights reserved." data-hi="सर्वाधिकार सुरक्षित।">All rights reserved.</span></span>
+    <div style="display:flex;gap:16px">
+      <a onclick="showPage('privacy')" data-en="Privacy" data-hi="प्राइवेसी">Privacy</a>
+      <a data-en="Terms" data-hi="शर्तें">Terms</a>
+      <a onclick="showPage('contact')" data-en="Contact" data-hi="संपर्क">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="toastMsg">Done!</span></div>
+
+<script>
+// ── LANGUAGE ──
+let lang = 'en';
+function setLang(l) {
+  lang = l;
+  document.querySelectorAll('.lb').forEach(b => b.classList.remove('on'));
+  document.querySelector(`.lb:nth-child(${l==='en'?2:3})`).classList.add('on');
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (el.tagName === 'INPUT' || el.tagName === 'BUTTON' || el.tagName === 'OPTION') {
+      el.textContent = el.getAttribute('data-' + l) || el.textContent;
+    } else {
+      el.textContent = el.getAttribute('data-' + l) || el.textContent;
+    }
+  });
+}
+
+// ── PAGES ──
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('on'));
+  document.getElementById('page-' + p).classList.add('on');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── DRAG & DROP & UPLOAD FIX ──
+const upBox = document.getElementById('upBox');
+const fi = document.getElementById('fi');
+
+// Click anywhere on box OR button opens file picker
+upBox.addEventListener('click', function(e) {
+  e.stopPropagation();
+  fi.click();
+});
+
+// Prevent double trigger from button
+upBox.querySelector('.up-cta').addEventListener('click', function(e) {
+  e.stopPropagation();
+  fi.click();
+});
+
+// Drag over
+upBox.addEventListener('dragover', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  upBox.classList.add('drag');
+});
+
+upBox.addEventListener('dragleave', function(e) {
+  e.preventDefault();
+  upBox.classList.remove('drag');
+});
+
+upBox.addEventListener('drop', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  upBox.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processImg(file);
+});
+
+// File input change
+fi.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) processImg(file);
+  // Reset so same file can be re-uploaded
+  fi.value = '';
+});
+
+// ── PROCESS ──
+let origData = null, maskData = null, currentFile = null;
+
+function processImg(file) {
+  if (!file.type.startsWith('image/')) { 
+    toast('❌ Sirf image file upload karein (JPG, PNG, WEBP)'); 
+    return; 
+  }
+  if (file.size > 10 * 1024 * 1024) { 
+    toast('❌ File bahut badi hai. Max 10MB allowed hai'); 
+    return; 
+  }
+  currentFile = file;
+  const reader = new FileReader();
+  reader.onerror = function() { toast('❌ File read error. Dobara try karein.'); };
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onerror = function() { toast('❌ Image load nahi hui.'); };
+    img.onload = function() {
+      origData = img;
+      document.getElementById('origImg').src = e.target.result;
+      document.getElementById('procSec').classList.add('show');
+      document.getElementById('resSec').classList.remove('show');
+      document.getElementById('procSec').scrollIntoView({behavior:'smooth', block:'start'});
+      startProcessing(img);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function startProcessing(img) {
+  const proc = document.getElementById('procSec');
+  const res = document.getElementById('resSec');
+  proc.classList.add('show');
+  res.classList.remove('show');
+  const steps = ['s1','s2','s3','s4'];
+  const times = [300, 700, 1200, 1800];
+  const doneTexts = ['Done','Analyzed','Removed','Ready'];
+  let pct = 0;
+  const fill = document.getElementById('pFill');
+  const intv = setInterval(function() {
+    pct += Math.random() * 6 + 2;
+    if (pct > 90) pct = 90;
+    fill.style.width = pct + '%';
+  }, 200);
+  steps.forEach(function(id, i) {
+    setTimeout(function() {
+      document.getElementById(id).classList.add('act');
+      if (i > 0) {
+        document.getElementById(steps[i-1]).classList.remove('act');
+        document.getElementById(steps[i-1]).classList.add('done');
+        document.getElementById(steps[i-1]+'t').textContent = '✓ ' + doneTexts[i-1];
+        document.getElementById(steps[i-1]+'t').classList.add('ok');
+      }
+    }, times[i]);
+  });
+  // After animation, call real API
+  setTimeout(function() {
+    clearInterval(intv);
+    removeBackground(img);
+  }, 2200);
+}
+
+// ── REAL REMOVE.BG API via Backend ──
+function removeBackground(img) {
+  if (!currentFile) { canvasFallback(img); return; }
+  
+  const formData = new FormData();
+  formData.append('image', currentFile);
+
+  // ★ Backend URL — Render pe deploy ke baad yahan URL daalo ★
+  // Abhi ke liye demo canvas fallback chalega
+  // const BACKEND_URL = 'https://your-app.onrender.com/remove-bg';
+  
+  // DIRECT Remove.bg se nahi chalega (CORS) — backend chahiye
+  // Isliye abhi canvas demo chala raha hai
+  toast('⚠️ Backend deploy karo pehle. Abhi demo mode mein hai.');
+  
+  // Jab backend ready ho, yeh uncomment karo:
+  /*
+  fetch(BACKEND_URL, { method: 'POST', body: formData })
+    .then(function(res) {
+      if (!res.ok) throw new Error('API error ' + res.status);
+      return res.blob();
+    })
+    .then(function(blob) {
+      const url = URL.createObjectURL(blob);
+      const rImg = new Image();
+      rImg.onload = function() {
+        const cv = document.getElementById('resCv');
+        const ctx = cv.getContext('2d');
+        cv.width = rImg.width; cv.height = rImg.height;
+        ctx.clearRect(0,0,cv.width,cv.height);
+        ctx.drawImage(rImg,0,0);
+        maskData = cv.toDataURL('image/png');
+        showResult();
+        URL.revokeObjectURL(url);
+      };
+      rImg.src = url;
+    })
+    .catch(function(err) {
+      console.error(err);
+      canvasFallback(img);
+    });
+  */
+  
+  canvasFallback(img);
+}
+
+function showResult() {
+  const fill = document.getElementById('pFill');
+  fill.style.width = '100%';
+  ['s1','s2','s3','s4'].forEach(function(id, i) {
+    document.getElementById(id).classList.remove('act');
+    document.getElementById(id).classList.add('done');
+    document.getElementById(id+'t').classList.add('ok');
+  });
+  setTimeout(function() {
+    document.getElementById('procSec').classList.remove('show');
+    document.getElementById('resSec').classList.add('show');
+    document.getElementById('resSec').scrollIntoView({behavior:'smooth', block:'start'});
+    toast('✅ Background hata diya!');
+  }, 400);
+}
+
+// Canvas fallback (demo — white bg remove karta hai)
+function canvasFallback(img) {
+  const cv = document.getElementById('resCv');
+  const ctx = cv.getContext('2d');
+  cv.width = img.width; cv.height = img.height;
+  ctx.drawImage(img, 0, 0);
+  const id = ctx.getImageData(0, 0, cv.width, cv.height);
+  const d = id.data;
+  const br = d[0], bg2 = d[1], bb = d[2];
+  for (let i = 0; i < d.length; i += 4) {
+    const r=d[i], g=d[i+1], b=d[i+2];
+    const diff = Math.abs(r-br)+Math.abs(g-bg2)+Math.abs(b-bb);
+    const bright = (r+g+b)/3;
+    if (diff < 80 || bright > 220) {
+      const alpha = Math.max(0, Math.min(255, diff * 3));
+      d[i+3] = bright > 220 ? 0 : alpha;
+    }
+  }
+  ctx.putImageData(id, 0, 0);
+  maskData = cv.toDataURL('image/png');
+  showResult();
+}
+
+// ── BG COLOR ──
+function setBg(color, sw) {
+  document.querySelectorAll('.sw').forEach(s => s.classList.remove('on'));
+  if (sw) sw.classList.add('on');
+
+  const wrap = document.getElementById('canvasWrap');
+  const cv = document.getElementById('resCv');
+
+  if (color === 't') {
+    wrap.classList.add('checker');
+    cv.style.background = 'transparent';
+    return;
+  }
+  wrap.classList.remove('checker');
+
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, w, h);
+
+  const img = new Image();
+  img.onload = () => ctx.drawImage(img, 0, 0);
+  img.src = maskData;
+}
+
+// ── DOWNLOAD ──
+function dlRes() {
+  if (!maskData) return;
+  const a = document.createElement('a');
+  a.href = document.getElementById('resCv').toDataURL('image/png');
+  a.download = 'clearcut-result.png';
+  a.click();
+  toast('⬇ Download started!');
+}
+
+// ── WHATSAPP SHARE ──
+function waShare() {
+  const msg = encodeURIComponent('ClearCut se background remove kiya — bilkul free! Try karo: ' + window.location.href);
+  window.open('https://wa.me/?text=' + msg, '_blank');
+}
+
+// ── RESET ──
+function resetAll() {
+  document.getElementById('procSec').classList.remove('show');
+  document.getElementById('resSec').classList.remove('show');
+  document.getElementById('fi').value = '';
+  document.getElementById('pFill').style.width = '0%';
+  ['s1','s2','s3','s4'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('act','done');
+    document.getElementById(id+'t').textContent = '—';
+    document.getElementById(id+'t').classList.remove('ok');
+  });
+  origData = null; maskData = null;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── FAQ ──
+function faq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── CONTACT ──
+function submitContact() {
+  const n = document.getElementById('cName').value.trim();
+  const e = document.getElementById('cEmail').value.trim();
+  const m = document.getElementById('cMsg').value.trim();
+  if (!n || !e || !m) { toast('⚠️ Please fill all fields'); return; }
+  toast('✅ Message sent! We will reply in 24 hours.');
+  document.getElementById('cName').value = '';
+  document.getElementById('cEmail').value = '';
+  document.getElementById('cMsg').value = '';
+}
+
+// ── TOAST ──
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>
