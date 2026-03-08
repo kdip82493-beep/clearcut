@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="ClearCut - Free AI Background Remover. Remove background from any photo instantly. Free online tool.">
+<title>ClearCut — Free AI Background Remover</title>
+
+<!-- ★ GOOGLE ADSENSE — Apna Publisher ID orhan daalo ★ -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg:#f7f4ef; --card:#fff; --border:#e5ddd0;
+  --accent:#e8390e; --accent2:#ff8c00;
+  --dark:#18120a; --text:#2a1f14; --muted:#8a7a68;
+  --green:#1a8a4a; --sh:rgba(24,18,10,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* ── LANG BAR ── */
+
+
+
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:300;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:62px;background:rgba(247,244,239,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--dark);text-decoration:none;display:flex;align-items:center;gap:7px}
+.logo-dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:500;transition:.2s;cursor:pointer}
+.nav-links a:hover{color:var(--dark)}
+.nav-r{display:flex;gap:10px}
+.btn-ol{background:none;border:1.5px solid var(--border);color:var(--text);padding:7px 17px;border-radius:9px;font-size:13px;font-weight:500;cursor:pointer;transition:.2s}
+.btn-ol:hover{border-color:var(--dark)}
+.btn-fl{background:var(--dark);color:#fff;padding:7px 18px;border-radius:9px;border:none;font-size:13px;font-weight:600;cursor:pointer;transition:.2s}
+.btn-fl:hover{background:var(--accent)}
+
+/* ── AD SLOTS ── */
+.ad-top{background:#f0ece4;border-bottom:1px solid var(--border);padding:10px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+.ad-mid{text-align:center;margin:28px auto;padding:0 20px}
+.ad-bot{background:#f0ece4;border-top:1px solid var(--border);padding:10px;text-align:center;min-height:90px;display:flex;align-items:center;justify-content:center}
+.ad-box{background:var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;letter-spacing:.3px}
+
+/* ── HERO ── */
+.hero{padding:68px 24px 44px;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:320px;background:radial-gradient(ellipse,rgba(232,57,14,.07),transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--dark);color:#fff;font-size:11.5px;font-weight:600;padding:5px 15px;border-radius:100px;margin-bottom:26px;letter-spacing:.3px}
+.badge span{color:var(--accent2)}
+h1{font-family:'Syne',sans-serif;font-size:clamp(38px,6.5vw,76px);font-weight:800;line-height:1.06;letter-spacing:-2px;color:var(--dark);margin-bottom:18px}
+h1 em{font-style:normal;color:var(--accent)}
+.sub{font-size:17px;color:var(--muted);max-width:460px;margin:0 auto 10px;line-height:1.65;font-weight:400}
+.sub2{font-size:13.5px;color:var(--muted);margin-bottom:38px;opacity:.75}
+.stats{display:flex;align-items:center;justify-content:center;gap:28px;margin-bottom:46px;flex-wrap:wrap}
+.stat{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--green)}
+
+/* ── UPLOAD BOX ── */
+.up-wrap{max-width:760px;margin:0 auto;padding:0 20px}
+.up-box{background:var(--card);border:2.5px dashed var(--border);border-radius:26px;padding:54px 36px;text-align:center;cursor:pointer;transition:.3s;position:relative;overflow:hidden;box-shadow:0 4px 28px var(--sh)}
+.up-box::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,57,14,.04),rgba(255,140,0,.04));opacity:0;transition:.3s}
+.up-box:hover,.up-box.drag{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 18px 50px rgba(232,57,14,.13)}
+.up-box:hover::after,.up-box.drag::after{opacity:1}
+.up-icon{width:78px;height:78px;margin:0 auto 18px;background:linear-gradient(135deg,#fff5f3,#fff8f0);border:1.5px solid var(--border);border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 4px 14px var(--sh)}
+.up-box h3{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--dark);margin-bottom:5px}
+.up-box p{color:var(--muted);font-size:13.5px;margin-bottom:5px}
+.up-hint{font-size:12.5px;color:var(--muted);margin-bottom:26px;opacity:.7}
+.up-cta{display:inline-flex;align-items:center;gap:7px;background:var(--accent);color:#fff;border:none;padding:13px 34px;border-radius:13px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.up-cta:hover{background:#c42e08;transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,57,14,.3)}
+.tags{margin-top:18px;display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap}
+.tag{background:var(--bg);border:1px solid var(--border);color:var(--muted);font-size:10.5px;font-weight:600;padding:3px 10px;border-radius:6px}
+#fi{display:none}
+
+/* ── PROCESSING ── */
+.proc{display:none;max-width:720px;margin:28px auto;padding:0 20px}
+.proc.show{display:block}
+.proc-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px;box-shadow:0 4px 24px var(--sh)}
+.proc-steps{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+.ps{display:flex;align-items:center;gap:12px;padding:11px 15px;border-radius:11px;background:var(--bg);transition:.4s}
+.ps.act{background:#fff7f5;border:1px solid rgba(232,57,14,.2)}
+.ps.done{background:#f0faf4;border:1px solid rgba(26,138,74,.2)}
+.pi{font-size:18px;width:28px;text-align:center}
+.pt{font-size:13.5px;font-weight:500;flex:1}
+.pst{font-size:12px;color:var(--muted)}
+.pst.ok{color:var(--green)}
+.prog-track{height:7px;background:var(--bg);border-radius:100px;overflow:hidden}
+.prog-fill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:100px;transition:width .5s ease}
+
+/* ── RESULT ── */
+.res{display:none;max-width:860px;margin:28px auto;padding:0 20px}
+.res.show{display:block}
+.res-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+.res-title{font-family:'Syne',sans-serif;font-size:21px;font-weight:700;color:var(--dark)}
+.res-badge{display:flex;align-items:center;gap:5px;background:#f0faf4;border:1px solid rgba(26,138,74,.3);color:var(--green);font-size:13px;font-weight:600;padding:5px 13px;border-radius:100px}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:18px}
+.img-panel{background:var(--card);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 4px 16px var(--sh)}
+.ph{padding:11px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;color:var(--text)}
+.ptag{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;padding:3px 9px;border-radius:6px}
+.pt-b{background:var(--bg);color:var(--muted)}
+.pt-a{background:#f0faf4;color:var(--green)}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:14px 14px;background-position:0 0,0 7px,7px -7px,-7px 0}
+.pimg{width:100%;aspect-ratio:4/3;object-fit:contain;display:block}
+canvas.pimg{width:100%!important;height:auto!important;aspect-ratio:4/3;object-fit:contain}
+
+/* BG PICKER */
+.bgp{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px 22px;margin-bottom:16px;box-shadow:0 4px 14px var(--sh)}
+.bgp h4{font-size:13.5px;font-weight:600;margin-bottom:12px;color:var(--dark)}
+.swatches{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.sw{width:34px;height:34px;border-radius:9px;cursor:pointer;border:2px solid transparent;transition:.2s;box-shadow:0 2px 8px var(--sh)}
+.sw:hover,.sw.on{border-color:var(--accent);transform:scale(1.15)}
+.sw-ck{background-image:linear-gradient(45deg,#bbb 25%,transparent 25%),linear-gradient(-45deg,#bbb 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#bbb 75%),linear-gradient(-45deg,transparent 75%,#bbb 75%);background-size:9px 9px;background-position:0 0,0 4.5px,4.5px -4.5px,-4.5px 0}
+.cc-wrap{display:flex;align-items:center;gap:6px;margin-left:6px}
+.cc-wrap input[type=color]{width:34px;height:34px;border:none;padding:0;border-radius:9px;cursor:pointer;background:none}
+.cc-wrap label{font-size:11px;color:var(--muted)}
+
+/* ACTIONS */
+.act-row{display:flex;gap:10px;flex-wrap:wrap}
+.btn-dl{flex:1;min-width:150px;background:var(--dark);color:#fff;border:none;padding:13px 22px;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-dl:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-wa{background:#25D366;color:#fff;border:none;padding:13px 18px;border-radius:13px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-wa:hover{opacity:.88;transform:translateY(-1px)}
+.btn-rs{background:var(--card);color:var(--text);border:1.5px solid var(--border);padding:13px 18px;border-radius:13px;font-size:14px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:6px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-rs:hover{border-color:var(--dark)}
+
+/* ── SECTIONS ── */
+.sec{padding:76px 24px;text-align:center}
+.sec-label{display:inline-flex;align-items:center;gap:5px;background:var(--bg);border:1px solid var(--border);color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:5px 13px;border-radius:100px;margin-bottom:14px}
+.sec-title{font-family:'Syne',sans-serif;font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--dark);letter-spacing:-.5px;margin-bottom:8px}
+.sec-sub{color:var(--muted);font-size:15.5px;margin-bottom:44px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:900px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:26px 22px;text-align:left;transition:.3s;box-shadow:0 3px 14px var(--sh)}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px var(--sh)}
+.card-icon{font-size:28px;margin-bottom:12px}
+.card h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--dark);margin-bottom:6px}
+.card p{font-size:12.5px;color:var(--muted);line-height:1.65}
+
+/* ── DARK SECTION ── */
+.dark-sec{background:var(--dark);padding:76px 24px;text-align:center}
+.dark-sec .sec-title{color:#fff}
+.dark-sec .sec-label{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.12);color:rgba(255,255,255,.5)}
+.dark-sec .sec-sub{color:rgba(255,255,255,.45)}
+.dark-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:18px;padding:28px 20px;text-align:center;transition:.3s}
+.dark-card:hover{background:rgba(232,57,14,.1);border-color:rgba(232,57,14,.3);transform:translateY(-4px)}
+.dark-card .card-icon{font-size:36px;margin-bottom:12px}
+.dark-card h4{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:#fff;margin-bottom:6px}
+.dark-card p{font-size:12px;color:rgba(255,255,255,.45);line-height:1.6}
+
+/* ── HOW STEPS ── */
+.step-num{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--border);line-height:1;margin-bottom:10px}
+
+/* ── PRICING ── */
+.pricing-sec{background:#f0ece4;padding:76px 24px;text-align:center}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:860px;margin:0 auto}
+.plan{background:var(--card);border:1.5px solid var(--border);border-radius:22px;padding:30px 24px;text-align:left;position:relative;transition:.3s;box-shadow:0 4px 20px var(--sh)}
+.plan:hover{transform:translateY(-4px);box-shadow:0 20px 50px var(--sh)}
+.plan.hot{border-color:var(--accent);background:linear-gradient(160deg,#fff9f7,var(--card))}
+.hot-lbl{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:4px 14px;border-radius:100px;white-space:nowrap}
+.plan-tier{font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.plan-price{font-family:'Syne',sans-serif;font-size:40px;font-weight:800;color:var(--dark);line-height:1;margin-bottom:4px}
+.plan-price small{font-size:15px;font-weight:400;color:var(--muted)}
+.plan-desc{font-size:13px;color:var(--muted);margin-bottom:22px;line-height:1.5}
+.divider{height:1px;background:var(--border);margin-bottom:18px}
+.feats{list-style:none;margin-bottom:26px}
+.feats li{font-size:13px;color:var(--text);padding:5px 0;display:flex;align-items:flex-start;gap:7px}
+.ck{color:var(--green);font-weight:700;flex-shrink:0}
+.cx{color:#ccc;font-weight:700;flex-shrink:0}
+.plan-btn{width:100%;padding:12px 18px;border-radius:11px;font-size:13.5px;font-weight:700;cursor:pointer;border:none;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.pb-ol{background:#fff;color:var(--dark);border:1.5px solid var(--border)}
+.pb-ol:hover{border-color:var(--dark)}
+.pb-fl{background:var(--dark);color:#fff}
+.pb-fl:hover{background:var(--accent)}
+.plan-note{font-size:11px;color:var(--muted);text-align:center;margin-top:9px}
+
+/* ── TESTIMONIALS ── */
+.testi{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;text-align:left;box-shadow:0 3px 14px var(--sh)}
+.stars{color:#f59e0b;font-size:13px;margin-bottom:10px}
+.tq{font-size:13px;color:var(--text);line-height:1.65;margin-bottom:14px;font-style:italic}
+.ta{display:flex;align-items:center;gap:9px}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700;flex-shrink:0}
+.an{font-size:13px;font-weight:600;color:var(--dark)}
+.ar{font-size:11px;color:var(--muted)}
+
+/* ── FAQ ── */
+.faq-sec{background:#f0ece4;padding:76px 24px}
+.faq-inner{max-width:660px;margin:0 auto}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:13px;margin-bottom:9px;overflow:hidden;box-shadow:0 2px 8px var(--sh)}
+.faq-q{padding:17px 20px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:13.5px;font-weight:600;color:var(--dark);user-select:none;transition:.2s}
+.faq-q:hover{background:var(--bg)}
+.arr{transition:transform .3s;font-size:11px;color:var(--muted)}
+.faq-item.open .arr{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;font-size:13px;color:var(--muted);line-height:1.75;padding:0 20px}
+.faq-item.open .faq-a{max-height:200px;padding:0 20px 16px}
+
+/* ── CONTACT ── */
+.contact-sec{padding:76px 24px;text-align:center}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:38px;box-shadow:0 4px 24px var(--sh);max-width:580px;margin:0 auto;text-align:left}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:13px;font-weight:600;color:var(--dark);margin-bottom:5px}
+.fg input,.fg textarea,.fg select{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:9px;font-size:13.5px;color:var(--text);background:var(--bg);font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:.2s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--accent)}
+.fg textarea{height:95px;resize:none}
+.btn-sub{width:100%;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:11px;font-size:15px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.btn-sub:hover{background:#c42e08;transform:translateY(-1px)}
+
+/* ── PRIVACY ── */
+.privacy-sec{padding:76px 24px}
+.prose{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:40px;box-shadow:0 4px 24px var(--sh);max-width:700px;margin:0 auto}
+.prose h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--dark);margin-bottom:6px}
+.prose .upd{font-size:12px;color:var(--muted);margin-bottom:26px}
+.prose h3{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:var(--dark);margin:22px 0 7px}
+.prose p{font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:10px}
+.prose ul{padding-left:18px;margin-bottom:10px}
+.prose ul li{font-size:13.5px;color:var(--muted);line-height:1.8}
+
+/* ── FOOTER ── */
+footer{background:var(--dark);color:rgba(255,255,255,.45);padding:46px 48px 26px}
+.fg-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:38px;margin-bottom:36px}
+.fb p{font-size:13px;line-height:1.7;max-width:210px;margin-top:10px}
+.fc h5{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:14px}
+.fc a{display:block;color:rgba(255,255,255,.4);text-decoration:none;font-size:13px;margin-bottom:7px;transition:.2s;cursor:pointer}
+.fc a:hover{color:#fff}
+.fb-bot{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;display:flex;align-items:center;justify-content:space-between;font-size:12px;flex-wrap:wrap;gap:10px}
+.fb-bot a{color:rgba(255,255,255,.35);text-decoration:none}
+.fb-bot a:hover{color:#fff}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:22px;right:22px;z-index:999;background:var(--dark);color:#fff;border-radius:13px;padding:13px 18px;display:flex;align-items:center;gap:9px;font-size:13.5px;font-weight:500;box-shadow:0 20px 50px rgba(0,0,0,.3);transform:translateY(70px);opacity:0;transition:all .4s cubic-bezier(.34,1.56,.64,1);max-width:300px}
+.toast.show{transform:translateY(0);opacity:1}
+
+/* ── PAGES ── */
+.page{display:none}.page.on{display:block}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  nav{padding:0 16px}
+  .nav-links{display:none}
+  .grid3,.grid4,.plans,.cmp{grid-template-columns:1fr}
+  .fg-grid{grid-template-columns:1fr 1fr}
+  footer{padding:36px 20px 20px}
+  .act-row{flex-direction:column}
+  .btn-dl{flex:none}
+  h1{letter-spacing:-1px}
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{animation:fadeUp .6s ease forwards;opacity:0}
+.fu1{animation-delay:.1s}.fu2{animation-delay:.2s}.fu3{animation-delay:.3s}
+
+/* ── LOGIN MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.7);align-items:center;justify-content:center}
+.modal-overlay.show{display:flex}
+.modal-box{background:#fff;border-radius:20px;padding:32px;width:90%;max-width:400px;box-shadow:0 30px 80px rgba(0,0,0,.3);animation:fadeUp .3s ease}
+.modal-box h2{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;color:var(--dark)}
+.modal-box p{font-size:13px;color:var(--muted);margin-bottom:20px}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted)}
+.modal-tabs{display:flex;gap:4px;background:#f0ece4;border-radius:10px;padding:4px;margin-bottom:20px}
+.modal-tab{flex:1;padding:8px;border:none;background:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--muted);transition:.2s}
+.modal-tab.active{background:#fff;color:var(--dark);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+.modal-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-size:14px;margin-bottom:12px;font-family:'Plus Jakarta Sans',sans-serif;outline:none;transition:.2s}
+.modal-input:focus{border-color:var(--dark)}
+.modal-btn{width:100%;padding:12px;background:var(--dark);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.modal-btn:hover{background:var(--accent)}
+.modal-err{color:#e8390e;font-size:12px;margin-bottom:10px;display:none}
+.modal-err.show{display:block}
+.modal-success{color:var(--green);font-size:12px;margin-bottom:10px;display:none}
+.modal-success.show{display:block}
+.user-menu{position:relative}
+.user-btn{background:var(--dark);color:#fff;padding:7px 16px;border-radius:9px;border:none;font-size:13px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px}
+.user-dropdown{display:none;position:absolute;right:0;top:110%;background:#fff;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.15);padding:8px;min-width:200px;z-index:500}
+.user-dropdown.show{display:block}
+.ud-info{padding:8px 10px;border-bottom:1px solid var(--border);margin-bottom:6px}
+.ud-email{font-size:12px;color:var(--muted)}
+.ud-plan{font-size:13px;font-weight:700;color:var(--dark);margin-top:2px}
+.ud-usage{font-size:11px;color:var(--muted);margin-top:2px}
+.ud-item{display:block;width:100%;padding:8px 10px;background:none;border:none;border-radius:8px;font-size:13px;text-align:left;cursor:pointer;color:var(--text);transition:.2s}
+.ud-item:hover{background:#f0ece4}
+.ud-logout{color:#e8390e !important}
+
+
+.google-btn{width:100%;padding:11px;background:#fff;color:#444;border:1.5px solid #ddd;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.google-btn:hover{background:#f5f5f5;border-color:#aaa}
+.or-divider{display:flex;align-items:center;gap:10px;margin-bottom:12px;color:var(--muted);font-size:12px}
+.or-divider::before,.or-divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+
+/* ── AD GATE ── */
+.adgate-overlay{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.85);flex-direction:column;align-items:center;justify-content:center;padding:20px}
+.adgate-overlay.show{display:flex}
+.adgate-box{background:#fff;border-radius:20px;width:100%;max-width:480px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.adgate-top{background:var(--dark);color:#fff;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+.adgate-top span{font-size:13px;font-weight:600}
+.adgate-timer{background:var(--accent);color:#fff;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:700}
+.adgate-banner{background:#e8e8e8;height:90px;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px;border-bottom:1px solid #eee}
+.adgate-big{background:#f0f0f0;height:250px;display:flex;align-items:center;justify-content:center;color:#999;font-size:12px}
+.adgate-close{width:100%;padding:14px;background:var(--dark);color:#fff;border:none;font-size:14px;font-weight:700;cursor:pointer;transition:.2s;font-family:'Plus Jakarta Sans',sans-serif}
+.adgate-close:hover{background:var(--accent)}
+.adgate-close:disabled{background:#999;cursor:not-allowed}
+
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#" onclick="showPage('home')">ClearCut<div class="logo-dot"></div></a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" data-text="Home">Home</a></li>
+    <li><a href="#features" data-text="Features">Features</a></li>
+    <li><a href="#pricing" data-text="Pricing">Pricing</a></li>
+    <li><a onclick="showPage('contact')" data-text="Contact">Contact</a></li>
+    <li><a onclick="showPage('privacy')" data-text="Privacy Policy">Privacy Policy</a></li>
+  </ul>
+  <div class="nav-r">
+    <button class="btn-ol" data-text="Sign In">Sign In</button>
+    <button class="btn-fl" onclick="scrollTo({top:9999})" data-text="Get Pro ✦">Get Pro ✦</button>
+  </div>
+</nav>
+
+<!-- ══════════ HOME PAGE ══════════ -->
+<div class="page on" id="page-home">
+
+  <!-- AD TOP -->
+  <div class="ad-top">
+    <div class="ad-box" style="width:728px;max-width:100%;height:90px">
+      <!-- ★ Replace with your AdSense code ★
+      <ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px"
+        data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script> -->
+      📢 AdSense Banner 728×90 — Apna ad code orhan daalo
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="badge fu fu1">✦ <span data-text="100% Free · No Signup · Instant AI">100% Free · No Signup · Instant AI</span></div>
+    <h1 class="fu fu2">
+      <span data-text="Remove Background">Remove Background</span><br>
+      <em data-text="in One Click">in One Click</em>
+    </h1>
+    <p class="sub fu fu3" data-text="Upload any photo — our AI removes the background instantly. Free, no watermark, no login.">
+      Upload any photo — our AI removes the background instantly. Free, no watermark, no login.
+    </p>
+    <p class="sub2 fu fu3" data-text="Trusted by 50,000+ creators, sellers & designers across India">Trusted by 50,000+ creators, sellers & designers across India</p>
+    <div class="stats">
+      <div class="stat"><div class="sdot"></div><span data-text="50K+ Happy Users">50K+ Happy Users</span></div>
+      <div class="stat"><div class="sdot"></div><span data-text="2M+ Images Processed">2M+ Images Processed</span></div>
+      <div class="stat"><div class="sdot"></div><span data-text="Always Free">Always Free</span></div>
+    </div>
+  </section>
+
+  <!-- UPLOAD -->
+  <div class="up-wrap">
+    <div class="up-box" id="upBox">
+      <div class="up-icon">🖼️</div>
+      <h3 data-text="Drop your image here">Drop your image here</h3>
+      <p data-text="or click to browse from your device">or click to browse from your device</p>
+      <p class="up-hint" data-text="Works with portraits, products, logos, animals & more">Works with portraits, products, logos, animals & more</p>
+      <button class="up-cta" id="upBtn">
+        📁 <span data-text="Choose Image">Choose Image</span>
+      </button>
+      <div class="tags">
+        <span class="tag">JPG</span><span class="tag">PNG</span>
+        <span class="tag">WEBP</span><span class="tag">Max 10MB</span>
+        <span class="tag" data-text="Free · No Login">Free · No Login</span>
+      </div>
+    </div>
+  </div>
+  <input type="file" id="fi" accept="image/*" style="display:none">
+
+  <!-- AD MIDDLE -->
+  <div class="ad-mid">
+    <div class="ad-box" style="width:300px;height:250px;margin:0 auto;border-radius:12px">
+      <!-- ★ Replace with your AdSense code ★
+      <ins class="adsbygoogle" style="display:inline-block;width:300px;height:250px"
+        data-ad-client="ca-pub-XXXXXXXX" data-ad-slot="XXXXXXXX"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({})</script> -->
+      📢 Ad 300×250
+    </div>
+  </div>
+
+  <!-- PROCESSING -->
+  <div class="proc" id="procSec">
+    <div class="proc-card">
+      <div class="proc-steps">
+        <div class="ps" id="s1"><div class="pi">📤</div><div class="pt" data-text="Uploading image...">Uploading image...</div><div class="pst" id="s1t">—</div></div>
+        <div class="ps" id="s2"><div class="pi">🤖</div><div class="pt" data-text="AI analyzing image...">AI analyzing image...</div><div class="pst" id="s2t">—</div></div>
+        <div class="ps" id="s3"><div class="pi">✂️</div><div class="pt" data-text="Removing background...">Removing background...</div><div class="pst" id="s3t">—</div></div>
+        <div class="ps" id="s4"><div class="pi">✅</div><div class="pt" data-text="Finalizing...">Finalizing...</div><div class="pst" id="s4t">—</div></div>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="pFill"></div></div>
+    </div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="res" id="resSec">
+    <div class="res-head">
+      <div class="res-title" data-text="✦ Background Removed!">✦ Background Removed!</div>
+      <div class="res-badge">✓ <span data-text="AI Processed">AI Processed</span></div>
+    </div>
+    <div class="cmp">
+      <div class="img-panel">
+        <div class="ph"><span data-text="Original">Original</span><span class="ptag pt-b" data-text="Before">Before</span></div>
+        <img id="origImg" class="pimg" src="" alt="Original">
+      </div>
+      <div class="img-panel">
+        <div class="ph"><span data-text="Result">Result</span><span class="ptag pt-a" data-text="✓ Done">✓ Done</span></div>
+        <div class="checker" id="canvasWrap"><canvas id="resCv" class="pimg"></canvas></div>
+      </div>
+    </div>
+
+    <!-- BG PICKER -->
+    <div class="bgp">
+      <h4 data-text="🎨 Change Background Color">🎨 Change Background Color</h4>
+      <div class="swatches">
+        <div class="sw sw-ck on" title="Transparent" onclick="setBg('t',this)"></div>
+        <div class="sw" style="background:#fff" onclick="setBg('#fff',this)"></div>
+        <div class="sw" style="background:#000" onclick="setBg('#000',this)"></div>
+        <div class="sw" style="background:#e8390e" onclick="setBg('#e8390e',this)"></div>
+        <div class="sw" style="background:#3b82f6" onclick="setBg('#3b82f6',this)"></div>
+        <div class="sw" style="background:#10b981" onclick="setBg('#10b981',this)"></div>
+        <div class="sw" style="background:#f59e0b" onclick="setBg('#f59e0b',this)"></div>
+        <div class="sw" style="background:#8b5cf6" onclick="setBg('#8b5cf6',this)"></div>
+        <div class="sw" style="background:#ec4899" onclick="setBg('#ec4899',this)"></div>
+        <div class="cc-wrap">
+          <input type="color" id="cc" value="#ffffff" onchange="setBg(this.value,null)">
+          <label data-text="Custom">Custom</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="act-row">
+      <button class="btn-dl" onclick="dlRes()">⬇ <span data-text="Download PNG Free">Download PNG Free</span></button>
+      <button class="btn-wa" onclick="waShare()">💬 <span data-text="Share on WhatsApp">Share on WhatsApp</span></button>
+      <button class="btn-rs" onclick="resetAll()">↺ <span data-text="Try Another">Try Another</span></button>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="sec" id="features">
+    <div class="sec-label">⚡ <span data-text="Simple Process">Simple Process</span></div>
+    <h2 class="sec-title" data-text="How It Works">How It Works</h2>
+    <p class="sec-sub" data-text="3 simple steps — done in seconds">3 simple steps — done in seconds</p>
+    <div class="grid3">
+      <div class="card"><div class="step-num">01</div><h4 data-text="Upload Image">Upload Image</h4><p data-text="Drag & drop or click to upload. JPG, PNG, WEBP up to 10MB.">Drag & drop or click to upload. JPG, PNG, WEBP up to 10MB.</p></div>
+      <div class="card"><div class="step-num">02</div><h4 data-text="AI Removes BG">AI Removes BG</h4><p data-text="Our AI detects and removes background in under 3 seconds.">Our AI detects and removes background in under 3 seconds.</p></div>
+      <div class="card"><div class="step-num">03</div><h4 data-text="Download Free">Download Free</h4><p data-text="Download your transparent PNG. No watermark ever.">Download your transparent PNG. No watermark ever.</p></div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="dark-sec">
+    <div class="sec-label">🎯 <span data-text="Perfect For">Perfect For</span></div>
+    <h2 class="sec-title" data-text="Who Uses ClearCut?">Who Uses ClearCut?</h2>
+    <p class="sec-sub" data-text="Loved by millions across India">Loved by millions across India</p>
+    <div class="grid4">
+      <div class="dark-card"><div class="card-icon">🛍️</div><h4 data-text="eCommerce Sellers">eCommerce Sellers</h4><p data-text="Amazon, Flipkart, Meesho sellers create white background product photos.">Amazon, Flipkart, Meesho sellers create white background product photos.</p></div>
+      <div class="dark-card"><div class="card-icon">📸</div><h4 data-text="Photographers">Photographers</h4><p data-text="Remove backgrounds from portraits and shoots professionally.">Remove backgrounds from portraits and shoots professionally.</p></div>
+      <div class="dark-card"><div class="card-icon">🎨</div><h4 data-text="Designers">Designers</h4><p data-text="Create clean cutouts for social media and marketing.">Create clean cutouts for social media and marketing.</p></div>
+      <div class="dark-card"><div class="card-icon">🪪</div><h4 data-text="Passport Photos">Passport Photos</h4><p data-text="Make white-background ID photos at home for free.">Make white-background ID photos at home for free.</p></div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="sec">
+    <div class="sec-label">✦ <span data-text="Why ClearCut">Why ClearCut</span></div>
+    <h2 class="sec-title" data-text="Everything You Need">Everything You Need</h2>
+    <p class="sec-sub" data-text="Powerful features, completely free">Powerful features, completely free</p>
+    <div class="grid3">
+      <div class="card"><div class="card-icon">⚡</div><h4 data-text="Lightning Fast">Lightning Fast</h4><p data-text="Results in under 3 seconds. No queue, no waiting.">Results in under 3 seconds. No queue, no waiting.</p></div>
+      <div class="card"><div class="card-icon">🎯</div><h4 data-text="Pixel-Perfect">Pixel-Perfect</h4><p data-text="AI handles fine hair, fur, complex edges with stunning accuracy.">AI handles fine hair, fur, complex edges with stunning accuracy.</p></div>
+      <div class="card"><div class="card-icon">🔒</div><h4 data-text="100% Private">100% Private</h4><p data-text="Images deleted immediately after processing. Never stored.">Images deleted immediately after processing. Never stored.</p></div>
+      <div class="card"><div class="card-icon">🎨</div><h4 data-text="Custom Backgrounds">Custom Backgrounds</h4><p data-text="Add any color background after removing in one click.">Add any color background after removing in one click.</p></div>
+      <div class="card"><div class="card-icon">📱</div><h4 data-text="Works on Mobile">Works on Mobile</h4><p data-text="No app needed. Works on any phone or tablet perfectly.">No app needed. Works on any phone or tablet perfectly.</p></div>
+      <div class="card"><div class="card-icon">⚙️</div><h4 data-text="API for Developers">API for Developers</h4><p data-text="REST API for bulk processing. Perfect for eCommerce stores.">REST API for bulk processing. Perfect for eCommerce stores.</p></div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="sec" style="background:#f0ece4;padding:76px 24px">
+    <div class="sec-label">⭐ <span data-text="Reviews">Reviews</span></div>
+    <h2 class="sec-title" data-text="What Our Users Say">What Our Users Say</h2>
+    <p class="sec-sub" data-text="Loved by creators across India">Loved by creators across India</p>
+    <div class="grid3">
+      <div class="testi"><div class="stars">★★★★★</div><p class="tq">"Meri Amazon shop ke liye product photos banane mein bahut helpful hai. White background ek second mein! Studio ke paise bach gaye."</p><div class="ta"><div class="av">R</div><div><div class="an">Rahul Sharma</div><div class="ar">Amazon Seller, Delhi</div></div></div></div>
+      <div class="testi"><div class="stars">★★★★★</div><p class="tq">"I use ClearCut daily for my Instagram posts. The background removal is so clean and accurate. Absolutely the best free tool I've found!"</p><div class="ta"><div class="av">P</div><div><div class="an">Prior Nair</div><div class="ar">Content Creator, Mumbai</div></div></div></div>
+      <div class="testi"><div class="stars">★★★★★</div><p class="tq">"Passport photo ghar pe hi bana lior! Pehle studio mein ₹100 dete the, ab free mein ho jaata hai. Bahut kaam ki cheez hai!"</p><div class="ta"><div class="av">A</div><div><div class="an">Amit Verma</div><div class="ar">Student, Jaipur</div></div></div></div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing-sec" id="pricing">
+    <div class="sec-label">💰 <span data-text="Pricing">Pricing</span></div>
+    <h2 class="sec-title" data-text="Start Free, Upgrade When Ready">Start Free, Upgrade When Ready</h2>
+    <p class="sec-sub" data-text="No hidden charges. Cancel anytime.">No hidden charges. Cancel anytime.</p>
+    <div class="plans">
+      <div class="plan">
+        <div class="plan-tier" data-text="Free Forever">Free Forever</div>
+        <div class="plan-price">₹0 <small data-text="/month">/month</small></div>
+        <div class="plan-desc" data-text="Perfect to get started. No card needed.">Perfect to get started. No card needed.</div>
+        <div class="divider"></div>
+        <ul class="feats">
+          <li><span class="ck">✓</span><span data-text="5 images per day">5 images per day</span></li>
+          <li><span class="ck">✓</span><span data-text="Standard quality">Standard quality</span></li>
+          <li><span class="ck">✓</span><span data-text="PNG download">PNG download</span></li>
+          <li><span class="ck">✓</span><span data-text="Background color change">Background color change</span></li>
+          <li><span class="cx">✗</span><span data-text="HD 4K quality">HD 4K quality</span></li>
+          <li><span class="cx">✗</span><span data-text="Bulk processing">Bulk processing</span></li>
+        </ul>
+        <button class="plan-btn pb-ol" data-text="Start Free →">Start Free →</button>
+        <div class="plan-note" data-text="No signup required">No signup required</div>
+      </div>
+      <div class="plan hot">
+        <div class="hot-lbl" data-text="Most Popular">Most Popular</div>
+        <div class="plan-tier" data-text="Pro Plan">Pro Plan</div>
+        <div class="plan-price">₹299 <small data-text="/month">/month</small></div>
+        <div class="plan-desc" data-text="For creators, freelancers & small businesses.">For creators, freelancers & small businesses.</div>
+        <div class="divider"></div>
+        <ul class="feats">
+          <li><span class="ck">✓</span><span data-text="200 images/month">200 images/month</span></li>
+          <li><span class="ck">✓</span><span data-text="HD 4K quality">HD 4K quality</span></li>
+          <li><span class="ck">✓</span><span data-text="No watermark">No watermark</span></li>
+          <li><span class="ck">✓</span><span data-text="Custom backgrounds">Custom backgrounds</span></li>
+          <li><span class="ck">✓</span><span data-text="Priority processing">Priority processing</span></li>
+          <li><span class="ck">✓</span><span data-text="Email support">Email support</span></li>
+        </ul>
+        <button class="plan-btn pb-fl" data-text="Get Pro →">Get Pro →</button>
+        <div class="plan-note" data-text="~₹1.50/image. Cancel anytime.">~₹1.50/image. Cancel anytime.</div>
+      </div>
+      <div class="plan">
+        <div class="plan-tier" data-text="Business">Business</div>
+        <div class="plan-price">₹999 <small data-text="/month">/month</small></div>
+        <div class="plan-desc" data-text="For agencies, teams & eCommerce stores.">For agencies, teams & eCommerce stores.</div>
+        <div class="divider"></div>
+        <ul class="feats">
+          <li><span class="ck">✓</span><span data-text="Unlimited images">Unlimited images</span></li>
+          <li><span class="ck">✓</span><span data-text="4K + Bulk processing">4K + Bulk processing</span></li>
+          <li><span class="ck">✓</span><span data-text="API access">API access</span></li>
+          <li><span class="ck">✓</span><span data-text="White-label option">White-label option</span></li>
+          <li><span class="ck">✓</span><span data-text="Dedicated support">Dedicated support</span></li>
+          <li><span class="ck">✓</span><span data-text="Custom integrations">Custom integrations</span></li>
+        </ul>
+        <button class="plan-btn pb-ol" onclick="showPage('contact')" data-text="Contact Sales →">Contact Sales →</button>
+        <div class="plan-note" data-text="Free 7-day trial">Free 7-day trial</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-sec">
+    <div class="faq-inner">
+      <div style="text-align:center;margin-bottom:36px">
+        <div class="sec-label">❓ FAQ</div>
+        <h2 class="sec-title" data-text="Frequently Asked Questions">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-text="Is ClearCut really free?">Is ClearCut really free?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-text="Yes! ClearCut is 100% free. Remove background from 5 images per day — no signup, no credit card needed. Upgrade to Pro for more.">Yes! ClearCut is 100% free. Remove background from 5 images per day — no signup, no credit card needed. Upgrade to Pro for more.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-text="Are my images safe?">Are my images safe?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-text="Absolutely. Images are processed securely and permanently deleted after processing. We never store or share your photos.">Absolutely. Images are processed securely and permanently deleted after processing. We never store or share your photos.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-text="What formats are supported?">What formats are supported?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-text="ClearCut supports JPG, PNG, and WEBP formats up to 10MB. Result is always a transparent PNG file.">ClearCut supports JPG, PNG, and WEBP formats up to 10MB. Result is always a transparent PNG file.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-text="Can I use it for passport photos?">Can I use it for passport photos?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-text="Yes! Many users create white background photos for passports, Aadhar, PAN card etc. Just select white background after removing.">Yes! Many users create white background photos for passports, Aadhar, PAN card etc. Just select white background after removing.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="faq(this)"><span data-text="How do I integrate the API?">How do I integrate the API?</span><span class="arr">▼</span></div>
+        <div class="faq-a" data-text="Our REST API is available on Business plan. Contact us after signup and we'll provide documentation and API keys.">Our REST API is available on Business plan. Contact us after signup and we'll provide documentation and API keys.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD BOTTOM -->
+  <div class="ad-bot">
+    <div class="ad-box" style="width:728px;max-width:100%;height:90px">
+      <!-- ★ Replace with your AdSense code ★ -->
+      📢 AdSense Banner 728×90 — Footer
+    </div>
+  </div>
+
+</div><!-- /home -->
+
+<!-- ══════════ CONTACT PAGE ══════════ -->
+<div class="page" id="page-contact">
+  <section class="contact-sec">
+    <div class="sec-label">📬 <span data-text="Get In Touch">Get In Touch</span></div>
+    <h2 class="sec-title" data-text="Contact Us">Contact Us</h2>
+    <p class="sec-sub" data-text="We reply within 24 hours">We reply within 24 hours</p>
+    <div class="contact-card">
+      <div class="fg">
+        <label data-text="Your Name">Your Name</label>
+        <input type="text" id="cName" placeholder="Rahul Sharma">
+      </div>
+      <div class="fg">
+        <label data-text="Email Address">Email Address</label>
+        <input type="email" id="cEmail" placeholder="rahul@gmail.com">
+      </div>
+      <div class="fg">
+        <label data-text="Subject">Subject</label>
+        <select id="cSubject">
+          <option data-text="General Question">General Question</option>
+          <option data-text="Pro Plan Enquiry">Pro Plan Enquiry</option>
+          <option data-text="Business / API">Business / API</option>
+          <option data-text="Report a Bug">Report a Bug</option>
+          <option data-text="Partnership">Partnership</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label data-text="Message">Message</label>
+        <textarea id="cMsg" placeholder="Aapka message orhan likhein..."></textarea>
+      </div>
+      <button class="btn-sub" onclick="submitContact()" data-text="Send Message →">Send Message →</button>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ PRIVACY PAGE ══════════ -->
+<div class="page" id="page-privacy">
+  <section class="privacy-sec">
+    <div class="prose">
+      <h2 data-text="Privacy Policy">Privacy Policy</h2>
+      <div class="upd" data-text="Last updated: January 2026">Last updated: January 2026</div>
+
+      <h3 data-text="1. Information We Collect">1. Information We Collect</h3>
+      <p data-text="ClearCut collects minimal information to operate the service. When you use our background removal tool, images are temporarily processed and immediately deleted. We do not store your images.">ClearCut collects minimal information to operate the service. When you use our background removal tool, images are temporarily processed and immediately deleted. We do not store your images.</p>
+
+      <h3 data-text="2. How We Use Your Information">2. How We Use Your Information</h3>
+      <p data-text="We use collected information to:">We use collected information to:</p>
+      <ul>
+        <li data-text="Provide and improve the background removal service">Provide and improve the background removal service</li>
+        <li data-text="Analyze usage patterns to improve user experience">Analyze usage patterns to improve user experience</li>
+        <li data-text="Display relevant advertisements via Google AdSense">Display relevant advertisements via Google AdSense</li>
+      </ul>
+
+      <h3 data-text="3. Google AdSense & Cookies">3. Google AdSense & Cookies</h3>
+      <p data-text="This website uses Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this website or other websites. You may opt out of personalized advertising by visiting Google's Ads Settings.">This website uses Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to this website or other websites. You may opt out of personalized advertising by visiting Google's Ads Settings.</p>
+
+      <h3 data-text="4. Image Privacy">4. Image Privacy</h3>
+      <p data-text="All uploaded images are processed in real-time and permanently deleted from our servers immediately after processing. We do not retain, analyze, or share your images with any third parties.">All uploaded images are processed in real-time and permanently deleted from our servers immediately after processing. We do not retain, analyze, or share your images with any third parties.</p>
+
+      <h3 data-text="5. Data Security">5. Data Security</h3>
+      <p data-text="We implement appropriate security measures to protect your information. All data transmission is encrypted using SSL/TLS technology.">We implement appropriate security measures to protect your information. All data transmission is encrypted using SSL/TLS technology.</p>
+
+      <h3 data-text="6. Contact Us">6. Contact Us</h3>
+      <p data-text="If you have questions about this Privacy Policy, please contact us through our Contact page.">If you have questions about this Privacy Policy, please contact us through our Contact page.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="fg-grid">
+    <div class="fb">
+      <a class="logo" href="#" onclick="showPage('home')" style="color:#fff">ClearCut<div class="logo-dot"></div></a>
+      <p data-text="Free AI background remover. Instant, accurate, private. Trusted by 50,000+ users across India.">Free AI background remover. Instant, accurate, private. Trusted by 50,000+ users across India.</p>
+    </div>
+    <div class="fc">
+      <h5 data-text="Tool">Tool</h5>
+      <a onclick="showPage('home')" data-text="Background Remover">Background Remover</a>
+      <a data-text="Bulk Remover">Bulk Remover</a>
+      <a data-text="API Access">API Access</a>
+    </div>
+    <div class="fc">
+      <h5 data-text="Company">Company</h5>
+      <a onclick="showPage('contact')" data-text="Contact">Contact</a>
+      <a onclick="showPage('privacy')" data-text="Privacy Policy">Privacy Policy</a>
+      <a data-text="Terms of Service">Terms of Service</a>
+    </div>
+    <div class="fc">
+      <h5 data-text="Plans">Plans</h5>
+      <a onclick="showPage('home');setTimeout(()=>document.getElementById('pricing').scrollIntoView(),100)" data-text="Free Plan">Free Plan</a>
+      <a data-text="Pro — ₹299/mo">Pro — ₹299/mo</a>
+      <a data-text="Business — ₹999/mo">Business — ₹999/mo</a>
+    </div>
+  </div>
+  <div class="fb-bot">
+    <span>© 2026 ClearCut. <span data-text="All rights reserved.">All rights reserved.</span></span>
+    <div style="display:flex;gap:16px">
+      <a onclick="showPage('privacy')" data-text="Privacy">Privacy</a>
+      <a data-text="Terms">Terms</a>
+      <a onclick="showPage('contact')" data-text="Contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span id="toastMsg">Done!</span></div>
+
+<script>
+// ── PAGES ──
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(x => x.classList.remove('on'));
+  document.getElementById('page-' + p).classList.add('on');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── DRAG & DROP & UPLOAD FIX ──
+const upBox = document.getElementById('upBox');
+const fi = document.getElementById('fi');
+
+// Click box opens file picker
+upBox.addEventListener('click', function() {
+  fi.click();
+});
+
+// Button click
+document.getElementById('upBtn').addEventListener('click', function(e) {
+  e.stopPropagation();
+  fi.click();
+});
+
+// Drag over
+upBox.addEventListener('dragover', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  upBox.classList.add('drag');
+});
+
+upBox.addEventListener('dragleave', function(e) {
+  e.preventDefault();
+  upBox.classList.remove('drag');
+});
+
+upBox.addEventListener('drop', function(e) {
+  e.preventDefault();
+  e.stopPropagation();
+  upBox.classList.remove('drag');
+  const file = e.dataTransfer.files[0];
+  if (file) processImg(file);
+});
+
+// File input change
+fi.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) processImg(file);
+  // Reset so same file can be re-uploaded
+  fi.value = '';
+});
+
+// ── PROCESS ──
+let origData = null, maskData = null, currentFile = null;
+
+function processImg(file) {
+  if (!file.type.startsWith('image/')) { 
+    toast('❌ Only image files allowed: JPG, PNG, WEBP'); 
+    return; 
+  }
+  if (file.size > 10 * 1024 * 1024) { 
+    toast('❌ File too large. Maximum size is 10MB'); 
+    return; 
+  }
+  currentFile = file;
+  const reader = new FileReader();
+  reader.onerror = function() { toast('❌ File read error. Please try again.'); };
+  reader.onload = function(e) {
+    const img = new Image();
+    img.onerror = function() { toast('❌ Image could not be loaded. Please try another file.'); };
+    img.onload = function() {
+      origData = img;
+      document.getElementById('origImg').src = e.target.result;
+      document.getElementById('procSec').classList.add('show');
+      document.getElementById('resSec').classList.remove('show');
+      document.getElementById('procSec').scrollIntoView({behavior:'smooth', block:'start'});
+      startProcessing(img);
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function startProcessing(img) {
+  const proc = document.getElementById('procSec');
+  const res = document.getElementById('resSec');
+  proc.classList.add('show');
+  res.classList.remove('show');
+  const steps = ['s1','s2','s3','s4'];
+  const times = [300, 700, 1200, 1800];
+  const doneTexts = ['Done','Analyzed','Removed','Ready'];
+  let pct = 0;
+  const fill = document.getElementById('pFill');
+  const intv = setInterval(function() {
+    pct += Math.random() * 6 + 2;
+    if (pct > 90) pct = 90;
+    fill.style.width = pct + '%';
+  }, 200);
+  steps.forEach(function(id, i) {
+    setTimeout(function() {
+      document.getElementById(id).classList.add('act');
+      if (i > 0) {
+        document.getElementById(steps[i-1]).classList.remove('act');
+        document.getElementById(steps[i-1]).classList.add('done');
+        document.getElementById(steps[i-1]+'t').textContent = '✓ ' + doneTexts[i-1];
+        document.getElementById(steps[i-1]+'t').classList.add('ok');
+      }
+    }, times[i]);
+  });
+  // After animation, call real API
+  setTimeout(function() {
+    clearInterval(intv);
+    removeBackground(img);
+  }, 2200);
+}
+
+// ── REAL REMOVE.BG API via Backend ──
+function removeBackground(img) {
+  if (!currentFile) { canvasFallback(img); return; }
+
+  const BACKEND_URL = 'https://clearcut-lijw.onrender.com/remove-bg';
+  const SERVER_BASE = 'https://clearcut-lijw.onrender.com';
+
+  // Wake up server in background when page loads
+  fetch(SERVER_BASE + '/health').catch(() => {});
+
+  const formData = new FormData();
+  formData.append('image', currentFile);
+
+  toast('🔄 Connecting to server...');
+  // First wake up server
+  fetch(SERVER_BASE + '/health').then(() => {
+    toast('🔄 AI is removing background... please wait');
+  }).catch(() => {
+    toast('🔄 AI is removing background... please wait');
+  });;
+
+  fetch(BACKEND_URL, { method: 'POST', body: formData })
+    .then(function(res) {
+      if (res.status === 402) {
+        toast('⚠️ API credits finished! Please add credits on remove.bg');
+        throw new Error('no credits');
+      }
+      if (!res.ok) throw new Error('API error ' + res.status);
+      return res.blob();
+    })
+    .then(function(blob) {
+      const url = URL.createObjectURL(blob);
+      const rImg = new Image();
+      rImg.onload = function() {
+        const cv = document.getElementById('resCv');
+        const ctx = cv.getContext('2d');
+        cv.width = rImg.width; cv.height = rImg.height;
+        ctx.clearRect(0, 0, cv.width, cv.height);
+        ctx.drawImage(rImg, 0, 0);
+        maskData = cv.toDataURL('image/png');
+        URL.revokeObjectURL(url);
+        // Show ad gate for free users, direct result for pro
+        const user = currentUser || {};
+        if (!user.plan || user.plan === 'free') {
+          showAdGate(function() { showResult(); });
+        } else {
+          showResult();
+        }
+      };
+      rImg.src = url;
+    })
+    .catch(function(err) {
+      console.error('Backend error:', err);
+      if (err.message !== 'no credits') {
+        toast('⚠️ Could not connect to server. Please try again in a few seconds.');
+        canvasFallback(img);
+      }
+    });
+}
+
+function showResult() {
+  const fill = document.getElementById('pFill');
+  fill.style.width = '100%';
+  ['s1','s2','s3','s4'].forEach(function(id, i) {
+    document.getElementById(id).classList.remove('act');
+    document.getElementById(id).classList.add('done');
+    document.getElementById(id+'t').classList.add('ok');
+  });
+  setTimeout(function() {
+    document.getElementById('procSec').classList.remove('show');
+    document.getElementById('resSec').classList.add('show');
+    document.getElementById('resSec').scrollIntoView({behavior:'smooth', block:'start'});
+    toast('✅ Background removed successfully!');
+  }, 400);
+}
+
+// Canvas fallback (demo — white bg remove karta hai)
+function canvasFallback(img) {
+  const cv = document.getElementById('resCv');
+  const ctx = cv.getContext('2d');
+  cv.width = img.width; cv.height = img.height;
+  ctx.drawImage(img, 0, 0);
+  const id = ctx.getImageData(0, 0, cv.width, cv.height);
+  const d = id.data;
+  const br = d[0], bg2 = d[1], bb = d[2];
+  for (let i = 0; i < d.length; i += 4) {
+    const r=d[i], g=d[i+1], b=d[i+2];
+    const diff = Math.abs(r-br)+Math.abs(g-bg2)+Math.abs(b-bb);
+    const bright = (r+g+b)/3;
+    if (diff < 80 || bright > 220) {
+      const alpha = Math.max(0, Math.min(255, diff * 3));
+      d[i+3] = bright > 220 ? 0 : alpha;
+    }
+  }
+  ctx.putImageData(id, 0, 0);
+  maskData = cv.toDataURL('image/png');
+  showResult();
+}
+
+// ── BG COLOR ──
+function setBg(color, sw) {
+  document.querySelectorAll('.sw').forEach(s => s.classList.remove('on'));
+  if (sw) sw.classList.add('on');
+
+  const wrap = document.getElementById('canvasWrap');
+  const cv = document.getElementById('resCv');
+
+  if (color === 't') {
+    wrap.classList.add('checker');
+    cv.style.background = 'transparent';
+    return;
+  }
+  wrap.classList.remove('checker');
+
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = color;
+  ctx.fillRect(0, 0, w, h);
+
+  const img = new Image();
+  img.onload = () => ctx.drawImage(img, 0, 0);
+  img.src = maskData;
+}
+
+// ── DOWNLOAD ──
+function dlRes() {
+  if (!maskData) return;
+  const a = document.createElement('a');
+  a.href = document.getElementById('resCv').toDataURL('image/png');
+  a.download = 'clearcut-result.png';
+  a.click();
+  toast('⬇ Download started!');
+}
+
+// ── WHATSAPP SHARE ──
+function waShare() {
+  const msg = encodeURIComponent('ClearCut se background remove kior — bilkul free! Try karo: ' + window.location.href);
+  window.open('https://wa.me/?text=' + msg, '_blank');
+}
+
+// ── RESET ──
+function resetAll() {
+  document.getElementById('procSec').classList.remove('show');
+  document.getElementById('resSec').classList.remove('show');
+  document.getElementById('fi').value = '';
+  document.getElementById('pFill').style.width = '0%';
+  ['s1','s2','s3','s4'].forEach(id => {
+    const el = document.getElementById(id);
+    el.classList.remove('act','done');
+    document.getElementById(id+'t').textContent = '—';
+    document.getElementById(id+'t').classList.remove('ok');
+  });
+  origData = null; maskData = null;
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+// ── FAQ ──
+function faq(el) {
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// ── CONTACT ──
+function submitContact() {
+  const n = document.getElementById('cName').value.trim();
+  const e = document.getElementById('cEmail').value.trim();
+  const m = document.getElementById('cMsg').value.trim();
+  if (!n || !e || !m) { toast('⚠️ Please fill all fields'); return; }
+  toast('✅ Message sent! We will reply in 24 hours.');
+  document.getElementById('cName').value = '';
+  document.getElementById('cEmail').value = '';
+  document.getElementById('cMsg').value = '';
+}
+
+// ── TOAST ──
+function toast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box" style="position:relative">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2 id="modalTitle">Welcome Back!</h2>
+    <p id="modalSubtitle">Login or create a new account</p>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="loginTab" onclick="switchTab('login')">Login</button>
+      <button class="modal-tab" id="registerTab" onclick="switchTab('register')">Sign Up</button>
+    </div>
+    <div class="modal-err" id="modalErr"></div>
+    <div class="modal-success" id="modalSuccess"></div>
+    <button class="google-btn" onclick="doGoogleLogin()">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Continue with Google
+    </button>
+    <div class="or-divider">or</div>
+    <input class="modal-input" type="email" id="authEmail" placeholder="Email address">
+    <input class="modal-input" type="password" id="authPassword" placeholder="Password (min 6 characters)">
+    <button class="modal-btn" id="authBtn" onclick="doAuth()">Login</button>
+  </div>
+</div>
+
+<script>
+// ── AUTH SYSTEM ──
+const BACKEND = 'https://clearcut-lijw.onrender.com';
+
+const SUPABASE_URL = 'https://slaqdzscvtwmqlyjhdzz.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_iR0GbL1WoikrVYsYGqsi2g_mLXBUStK';
+
+async function doGoogleLogin() {
+  try {
+    const res = await fetch(SUPABASE_URL + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(window.location.href), {
+      method: 'GET',
+      headers: { 'apikey': SUPABASE_ANON_KEY }
+    });
+    // Redirect to Google
+    window.location.href = SUPABASE_URL + '/auth/v1/authorize?provider=google&redirect_to=' + encodeURIComponent(window.location.origin + window.location.pathname);
+  } catch(e) {
+    showErr('Google login mein error aaor. Dobara try karo.');
+  }
+}
+
+// Handle Google OAuth callback
+window.addEventListener('load', function() {
+  const hash = window.location.hash;
+  if (hash && hash.includes('access_token')) {
+    const params = new URLSearchParams(hash.substring(1));
+    const token = params.get('access_token');
+    if (token) {
+      // Get user info
+      fetch(SUPABASE_URL + '/auth/v1/user', {
+        headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + token }
+      }).then(r => r.json()).then(user => {
+        localStorage.setItem('cc_token', token);
+        localStorage.setItem('cc_user', JSON.stringify({ id: user.id, email: user.email, plan: 'free' }));
+        currentUser = { id: user.id, email: user.email, plan: 'free' };
+        updateNavUI();
+        // Save user to our DB via backend
+        fetch('https://clearcut-lijw.onrender.com/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: user.email, password: 'google_' + user.id.substring(0,8), google: true })
+        }).catch(() => {});
+        toast('✅ Logged in with Google! Welcome!');
+        window.location.hash = '';
+      });
+    }
+  }
+});
+
+let currentUser = null;
+let authMode = 'login';
+
+// Check if user already logged in
+window.addEventListener('load', function() {
+  const token = localStorage.getItem('cc_token');
+  const user = localStorage.getItem('cc_user');
+  if (token && user) {
+    currentUser = JSON.parse(user);
+    updateNavUI();
+    fetchUserInfo();
+  }
+});
+
+function openModal() {
+  document.getElementById('loginModal').classList.add('show');
+  document.getElementById('authEmail').focus();
+}
+
+function closeModal() {
+  document.getElementById('loginModal').classList.remove('show');
+  clearModalErrors();
+}
+
+function switchTab(mode) {
+  authMode = mode;
+  document.getElementById('loginTab').classList.toggle('active', mode === 'login');
+  document.getElementById('registerTab').classList.toggle('active', mode === 'register');
+  document.getElementById('modalTitle').textContent = mode === 'login' ? 'Welcome Back!' : 'Create Account';
+  document.getElementById('modalSubtitle').textContent = mode === 'login' ? 'Login to your account' : '100% free - just need your email!';
+  document.getElementById('authBtn').textContent = mode === 'login' ? 'Login' : 'Create Account';
+  clearModalErrors();
+}
+
+function clearModalErrors() {
+  document.getElementById('modalErr').classList.remove('show');
+  document.getElementById('modalSuccess').classList.remove('show');
+}
+
+function showErr(msg) {
+  const el = document.getElementById('modalErr');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+function showSucc(msg) {
+  const el = document.getElementById('modalSuccess');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+async function doAuth() {
+  const email = document.getElementById('authEmail').value.trim();
+  const password = document.getElementById('authPassword').value;
+  if (!email || !password) { showErr('Please enter email and password'); return; }
+  if (password.length < 6) { showErr('Password must be at least 6 characters'); return; }
+
+  const btn = document.getElementById('authBtn');
+  btn.textContent = 'Loading...';
+  btn.disabled = true;
+  clearModalErrors();
+
+  try {
+    const endpoint = authMode === 'login' ? '/auth/login' : '/auth/register';
+    const res = await fetch(BACKEND + endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      showErr(data.error || 'Kuch galat hua. Dobara try karein.');
+    } else {
+      if (authMode === 'register') {
+        showSucc('Account ban gaor! Ab login karein.');
+        switchTab('login');
+      } else {
+        localStorage.setItem('cc_token', data.token);
+        localStorage.setItem('cc_user', JSON.stringify(data.user));
+        currentUser = data.user;
+        updateNavUI();
+        closeModal();
+        toast('✅ Logged in! Welcome ' + data.user.email.split('@')[0]);
+      }
+    }
+  } catch(e) {
+    showErr('Could not connect to server. Please try again.');
+  }
+
+  btn.textContent = authMode === 'login' ? 'Login' : 'Create Account';
+  btn.disabled = false;
+}
+
+async function fetchUserInfo() {
+  const token = localStorage.getItem('cc_token');
+  if (!token) return;
+  try {
+    const res = await fetch(BACKEND + '/user/info', {
+      headers: { 'Authorization': 'Bearer ' + token }
+    });
+    if (res.ok) {
+      const data = await res.json();
+      currentUser = data;
+      localStorage.setItem('cc_user', JSON.stringify(data));
+      updateNavUI();
+    }
+  } catch(e) {}
+}
+
+function updateNavUI() {
+  const navR = document.querySelector('.nav-r');
+  if (!navR) return;
+  if (currentUser) {
+    const planBadge = currentUser.plan === 'pro' ? '⭐ Pro' : currentUser.plan === 'business' ? '💼 Business' : '🆓 Free';
+    const used = currentUser.images_used_today || 0;
+    const limit = currentUser.plan === 'free' ? '3/day' : currentUser.plan === 'pro' ? '200/month' : '1000/month';
+    navR.innerHTML = `
+      <div class="user-menu">
+        <button class="user-btn" onclick="toggleUserMenu()">
+          👤 ${currentUser.email.split('@')[0]} ${planBadge}
+        </button>
+        <div class="user-dropdown" id="userDropdown">
+          <div class="ud-info">
+            <div class="ud-email">${currentUser.email}</div>
+            <div class="ud-plan">${planBadge} Plan</div>
+            <div class="ud-usage">Today: ${used} images used</div>
+          </div>
+          <button class="ud-item" onclick="scrollTo({top:9999,behavior:'smooth'});toggleUserMenu()">⭐ Upgrade to Pro</button>
+          <button class="ud-item ud-logout" onclick="doLogout()">🚪 Logout</button>
+        </div>
+      </div>`;
+  } else {
+    navR.innerHTML = `
+      <button class="btn-ol" onclick="openModal()">Sign In</button>
+      <button class="btn-fl" onclick="scrollTo({top:9999,behavior:'smooth'})">Get Pro ✦</button>`;
+  }
+}
+
+function toggleUserMenu() {
+  document.getElementById('userDropdown').classList.toggle('show');
+}
+
+function doLogout() {
+  localStorage.removeItem('cc_token');
+  localStorage.removeItem('cc_user');
+  currentUser = null;
+  updateNavUI();
+  toast('👋 Logged out!');
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', function(e) {
+  const menu = document.getElementById('userDropdown');
+  if (menu && !e.target.closest('.user-menu')) menu.classList.remove('show');
+});
+
+// Close modal on overlay click
+document.getElementById('loginModal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// Override Sign In button
+document.addEventListener('DOMContentLoaded', function() {
+  const signinBtn = document.querySelector('.btn-ol');
+  if (signinBtn) signinBtn.onclick = openModal;
+});
+</script>
+
+
+<!-- AD GATE -->
+<div class="adgate-overlay" id="adGate">
+  <div class="adgate-box">
+    <div class="adgate-top">
+      <span>⚡ Your image is ready!</span>
+      <span class="adgate-timer" id="adTimer">5s</span>
+    </div>
+    <div class="adgate-banner">
+      <!-- AdSense Banner 728x90 -->
+      <span>📢 Advertisement</span>
+    </div>
+    <div class="adgate-big">
+      <!-- AdSense Large Rectangle 336x280 -->
+      <span>📢 Advertisement</span>
+    </div>
+    <button class="adgate-close" id="adCloseBtn" onclick="closeAdGate()" disabled>
+      Please wait... <span id="adCountdown">5</span>s
+    </button>
+  </div>
+</div>
+
+<script>
+// ── AD GATE SYSTEM ──
+let adTimer = null;
+
+function showAdGate(callback) {
+  const overlay = document.getElementById('adGate');
+  const btn = document.getElementById('adCloseBtn');
+  const countdown = document.getElementById('adCountdown');
+  const timerBadge = document.getElementById('adTimer');
+  
+  overlay.classList.add('show');
+  btn.disabled = true;
+  
+  let seconds = 5;
+  btn.textContent = 'Please wait... ' + seconds + 's';
+  
+  adTimer = setInterval(function() {
+    seconds--;
+    countdown.textContent = seconds;
+    timerBadge.textContent = seconds + 's';
+    btn.textContent = 'Please wait... ' + seconds + 's';
+    
+    if (seconds <= 0) {
+      clearInterval(adTimer);
+      btn.disabled = false;
+      btn.textContent = '✅ View My Result →';
+      btn.innerHTML = '✅ View My Result &rarr;';
+    }
+  }, 1000);
+
+  // Store callback for after ad
+  window._adCallback = callback;
+}
+
+function closeAdGate() {
+  document.getElementById('adGate').classList.remove('show');
+  clearInterval(adTimer);
+  if (window._adCallback) {
+    window._adCallback();
+    window._adCallback = null;
+  }
+}
+</script>
+
+</body>
+</html>
